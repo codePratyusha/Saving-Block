@@ -1,31 +1,21 @@
 #include "introwindow.h"
 #include <QWindow>
 
-//generateParticles = new QPushButton("Generate Particles");
-//spin_box_posRows = new QSpinBox;
-//spin_box_posRows->setRange(0,20);
-//spin_box_posCol = new QSpinBox;
-//spin_box_posCol->setRange(0,20);
-
-//Label_posRows = new QLabel("Rows");
-//Label_posCol = new QLabel("Columns");
-
-//layout = new QGridLayout;
-//layout->addWidget(generateParticles, 1, 1);
-//layout->addWidget(Label_posRows,2,1);
-//layout->addWidget(Label_posRows, 2, 2);
-//layout->addWidget(Label_posCol,3,1);
-//layout->addWidget(spin_box_posCol, 3, 2);
-//setLayout(layout);
+bool isEasy;
 
 introWindow::introWindow()
 {
+    isEasy = true; //sets default difficulty to easy
+
+    gameWindow = new QWidget;
+    instr_window = new QWidget;
+
     gameTitle = new QLabel("UCLA Meme Page Game: Saving Gene Block!");
 
     startWindowButton = new QPushButton("Start");
     startWindowButton->setFixedSize(100, 50);
 
-    instructionsButton = new QPushButton("Instructions");
+    instructionsButton = new QPushButton("How To Play");
     instructionsButton->setFixedSize(100, 50);
 
     easyButton = new QPushButton("Easy");
@@ -34,28 +24,33 @@ introWindow::introWindow()
     hardButton = new QPushButton("Hard");
     hardButton->setFixedSize(100, 50);
 
-    verticalLayout = new QGridLayout;
-    horizontalLayout = new QGridLayout;
+    IntroWindowGridLayout = new QGridLayout;
 
-    verticalLayout->addWidget(gameTitle,0,0, Qt::AlignCenter);
+    IntroWindowGridLayout->addWidget(gameTitle,0,0, Qt::AlignCenter);
 
-    verticalLayout->addWidget(startWindowButton, 1,0, Qt::AlignCenter);
-    verticalLayout->addWidget(instructionsButton, 2,0, Qt::AlignCenter);
-    verticalLayout->addWidget(easyButton,3,0, Qt::AlignLeft);
-    verticalLayout->addWidget(hardButton,3,0, Qt::AlignRight);
+    IntroWindowGridLayout->addWidget(startWindowButton, 1,0, Qt::AlignCenter);
+    IntroWindowGridLayout->addWidget(instructionsButton, 2,0, Qt::AlignCenter);
+    IntroWindowGridLayout->addWidget(easyButton,3,0, Qt::AlignLeft);
+    IntroWindowGridLayout->addWidget(hardButton,3,0, Qt::AlignRight);
 
 
     connect(instructionsButton, SIGNAL(clicked()),this, SLOT(openInstrWindow())); //initiates instructions
+    connect(startWindowButton, SIGNAL(clicked()),this, SLOT(openGameWindow())); //opens game window
     connect(easyButton, SIGNAL(clicked()),this, SLOT(selectEasy()));  //highlights Easy Level
     connect(hardButton, SIGNAL(clicked()),this, SLOT(selectHard()));  //highlights Hard Level
 
+    setLayout(IntroWindowGridLayout);
+}
 
-    setLayout(verticalLayout);
+//Game window
+void introWindow::openGameWindow() {
+    gameWindow->setFixedSize(650,650);
+    gameWindow->show();
 }
 
 //Instructions window
-void introWindow::openInstrWindow(){
-    QWidget *instr_window = new QWidget;
+void introWindow::openInstrWindow() {
+    instr_window = new QWidget;
     QLabel *instr_text = new QLabel(instr_window);
     instr_text->setText("Welcome to UCLA Meme Page: Saving Gene Block!\n "
                         "Uh oh! Gene Block is stuck in the basement of Powell Library and it is up to you to save him.\n"
@@ -65,7 +60,6 @@ void introWindow::openInstrWindow(){
                         "Use the arrow keys to move and spacebar to shoot. Good luck!\n");
     instr_text->setAlignment(Qt::AlignCenter);
     instr_text->show();
-
     instr_window->show();
 }
 
@@ -73,19 +67,31 @@ void introWindow::selectEasy(){
 
     easyButton->setStyleSheet("background-color: green");
     hardButton->setStyleSheet("background-color: rgb(77,77,77)");
+    isEasy = true;
 
+    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
 }
 
 void introWindow::selectHard(){
 
     hardButton->setStyleSheet("background-color: green");
     easyButton->setStyleSheet("background-color: rgb(77,77,77)");
+    isEasy = false;
+    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
 }
 
+//Deletes all objects
 introWindow::~introWindow()
 {
+    delete gameWindow;
+    delete instr_window;
+    delete IntroWindowGridLayout;
+    delete gameTitle;
+    delete startWindowButton;
+    delete instructionsButton;
+    delete easyButton;
+    delete hardButton;
 }
-
 
 
 

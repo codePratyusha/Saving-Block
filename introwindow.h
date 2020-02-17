@@ -1,10 +1,13 @@
 #ifndef INTROWINDOW_H
 #define INTROWINDOW_H
+#include <iostream>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
 #include<QLabel>
 #include <QMainWindow>
+
+extern bool isEasy; //global variable (accessible across all files) to set difficulty
 
 class introWindow : public QWidget
 {
@@ -13,15 +16,18 @@ class introWindow : public QWidget
     public:
         introWindow();      //Constructor
         ~introWindow();     //Destructor
-
-public slots:
+    public slots:
         void openInstrWindow();
+        void openGameWindow();
         void selectEasy();
         void selectHard();
     private:
+        //Windows
+        QWidget* gameWindow = nullptr;
+        QWidget* instr_window = nullptr;
+
         //Layout
-        QGridLayout* horizontalLayout = nullptr;
-        QGridLayout* verticalLayout = nullptr;
+        QGridLayout* IntroWindowGridLayout = nullptr;
 
         //Label(s)
         QLabel* gameTitle = nullptr;
@@ -32,8 +38,5 @@ public slots:
         QPushButton* easyButton = nullptr;
         QPushButton* hardButton = nullptr;
 };
-
-
-
 
 #endif // INTROWINDOW_H
