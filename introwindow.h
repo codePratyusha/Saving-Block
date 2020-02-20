@@ -1,11 +1,6 @@
 #ifndef INTROWINDOW_H
 #define INTROWINDOW_H
-#include <iostream>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include<QLabel>
-#include <QMainWindow>
+#include <mainwindow.h>
 
 extern bool isEasy; //global variable (accessible across all files) to set difficulty
 
