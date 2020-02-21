@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QString>
 #include <QStackedWidget>
 
 QT_BEGIN_NAMESPACE

@@ -7,8 +7,6 @@ introWindow::introWindow()
 {
     isEasy = true; //sets default difficulty to easy
 
-    instr_window = new QWidget;
-
     gameTitle = new QLabel("UCLA Meme Page Game: Saving Gene Block!");
 
     startWindowButton = new QPushButton("Start");
@@ -74,7 +72,6 @@ void introWindow::selectHard(){
 //Deletes all objects
 introWindow::~introWindow()
 {
-    delete instr_window;
     delete IntroWindowGridLayout;
     delete gameTitle;
     delete startWindowButton;

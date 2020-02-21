@@ -19,9 +19,6 @@ class introWindow : public QWidget
         void selectEasy();
         void selectHard();
     private:
-        //Window
-        QWidget* instr_window = nullptr;
-
         //Layout
         QGridLayout* IntroWindowGridLayout = nullptr;
 

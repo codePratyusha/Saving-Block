@@ -12,8 +12,11 @@ class GameWindow : public QWidget
     public slots:
 
     private:
-        QLabel* testLabel = nullptr;
         QGridLayout* mainLayout = nullptr;
+
+        QLabel* playerHealthLabel = nullptr;
+        const int maxPlayerHealth = 3;  //maybe put data memebr in Player class
+        const int minPlayerHealth = 0;
 };
 
 #endif // GAMEWINDOW_H
