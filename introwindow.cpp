@@ -7,7 +7,6 @@ introWindow::introWindow()
 {
     isEasy = true; //sets default difficulty to easy
 
-    gameWindow = new QWidget;
     instr_window = new QWidget;
 
     gameTitle = new QLabel("UCLA Meme Page Game: Saving Gene Block!");
@@ -35,17 +34,19 @@ introWindow::introWindow()
 
 
     connect(instructionsButton, SIGNAL(clicked()),this, SLOT(openInstrWindow())); //initiates instructions
-    connect(startWindowButton, SIGNAL(clicked()),this, SLOT(openGameWindow())); //opens game window
+    connect(startWindowButton, SIGNAL(clicked()),this, SLOT(openGameWindow())); //initiates instructions
     connect(easyButton, SIGNAL(clicked()),this, SLOT(selectEasy()));  //highlights Easy Level
     connect(hardButton, SIGNAL(clicked()),this, SLOT(selectHard()));  //highlights Hard Level
 
     setLayout(IntroWindowGridLayout);
 }
 
-//Game window
 void introWindow::openGameWindow() {
-    gameWindow->setFixedSize(650,650);
+    gameWindow = new QWidget;
+    gameWindow->setFixedSize(600, 600);
+    gameWindow->setWindowTitle("Save Gene Block");
     gameWindow->show();
+    std::cout << "Game Window opened \n";   //for debugging purposes
 }
 
 //Instructions window
@@ -83,7 +84,6 @@ void introWindow::selectHard(){
 //Deletes all objects
 introWindow::~introWindow()
 {
-    delete gameWindow;
     delete instr_window;
     delete IntroWindowGridLayout;
     delete gameTitle;

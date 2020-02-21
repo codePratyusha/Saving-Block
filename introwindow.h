@@ -18,8 +18,8 @@ class introWindow : public QWidget
         void selectHard();
     private:
         //Windows
-        QWidget* gameWindow = nullptr;
         QWidget* instr_window = nullptr;
+        QWidget* gameWindow = nullptr;
 
         //Layout
         QGridLayout* IntroWindowGridLayout = nullptr;

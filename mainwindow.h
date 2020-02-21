@@ -1,11 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <QMainWindow>
 #include <iostream>
+#include <QMainWindow>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include<QLabel>
+#include <QLabel>
+#include <QStackedWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
