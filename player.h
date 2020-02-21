@@ -1,7 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <mainwindow.h>
-#include <introwindow.h>
 
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
@@ -23,10 +22,10 @@ class Player : public QObject, public QGraphicsPixmapItem
     public slots:
 //        void decreaseHealth();
     private:
-        const int easyMaxHealth = 5;
-        const int hardMaxHealth = 2;
-        int health;
         QSet<int> keysPressed;
+        const int easyMaxHealth = 5;    //constant health, player health can never exceed value
+        const int hardMaxHealth = 2;    //constant health, player health can never exceed value
+        int health;                     //health that is decremented
 };
 
 #endif // PLAYER_H

@@ -14,15 +14,22 @@
 
 GameWindow::GameWindow()
 {
-    //To do: make Player class, defined by maxHealth as integer
-    //       Create class object in GameWindow constructor, then
-    //       pass as parameter in playerHealthLabel
+    //To do: change from layout to scene
 
     std::string str = "Health: ";
 //    str += std::to_string(maxPlayerHealth);
 
     playerHealthLabel = new QLabel("Health: ");
     mainLayout = new QGridLayout;
+
+    scene = new QGraphicsScene(this);
+
+    QPixmap userIcon(":/images/player.png");
+    user = new Player(userIcon);
+    user->setPos(325, 325); //should be middle of game window
+
+    scene->addItem(user);
+
     mainLayout->addWidget(playerHealthLabel, 0, 0, Qt::AlignTop);
     setLayout(mainLayout);
 }
