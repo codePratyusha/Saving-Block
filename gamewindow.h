@@ -13,10 +13,10 @@ class GameWindow : public QWidget
 
     private:
         QGridLayout* mainLayout = nullptr;
-
         QLabel* playerHealthLabel = nullptr;
-        const int maxPlayerHealth = 3;  //maybe put data memebr in Player class
-        const int minPlayerHealth = 0;
+
+        void updateHealth();    //if player is damaged, decrement health by 1
+        void endGame();         //if player health is 0, then end game
 };
 
 #endif // GAMEWINDOW_H

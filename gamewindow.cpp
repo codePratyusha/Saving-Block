@@ -19,7 +19,7 @@ GameWindow::GameWindow()
     //       pass as parameter in playerHealthLabel
 
     std::string str = "Health: ";
-    str += std::to_string(maxPlayerHealth);
+//    str += std::to_string(maxPlayerHealth);
 
     playerHealthLabel = new QLabel("Health: ");
     mainLayout = new QGridLayout;

@@ -7,7 +7,6 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QString>
-#include <QStackedWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

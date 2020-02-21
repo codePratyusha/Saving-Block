@@ -39,9 +39,10 @@ introWindow::introWindow()
 }
 
 void introWindow::openGameWindow() {
-    GameWindow* game = new GameWindow();
-    game->setFixedSize(600, 600);
-    game->show();
+    GameWindow* gameWindow = new GameWindow();
+    gameWindow->setFixedSize(630, 630);
+    gameWindow->setWindowTitle("Save Gene Block");
+    gameWindow->show();
     std::cout << "Game Window opened \n";   //for debugging purposes
 }
 
@@ -49,6 +50,7 @@ void introWindow::openGameWindow() {
 void introWindow::openInstrWindow() {
     InstructionsWindow* instructionsWindow = new InstructionsWindow();
     instructionsWindow->setFixedSize(500, 400);
+    instructionsWindow->setWindowTitle("How to Play");
     instructionsWindow->show();
 }
 

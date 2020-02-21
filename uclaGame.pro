@@ -20,13 +20,15 @@ SOURCES += \
     instructionswindow.cpp \
     introwindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    player.cpp
 
 HEADERS += \
     gamewindow.h \
     instructionswindow.h \
     introwindow.h \
-    mainwindow.h
+    mainwindow.h \
+    player.h
 
 FORMS += \
     mainwindow.ui
