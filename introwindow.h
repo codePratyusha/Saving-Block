@@ -1,5 +1,7 @@
 #ifndef INTROWINDOW_H
 #define INTROWINDOW_H
+#include <instructionswindow.h>
+#include <gamewindow.h>
 #include <mainwindow.h>
 
 extern bool isEasy; //global variable (accessible across all files) to set difficulty
@@ -17,9 +19,8 @@ class introWindow : public QWidget
         void selectEasy();
         void selectHard();
     private:
-        //Windows
+        //Window
         QWidget* instr_window = nullptr;
-        QWidget* gameWindow = nullptr;
 
         //Layout
         QGridLayout* IntroWindowGridLayout = nullptr;

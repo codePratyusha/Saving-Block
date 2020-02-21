@@ -32,7 +32,6 @@ introWindow::introWindow()
     IntroWindowGridLayout->addWidget(easyButton,3,0, Qt::AlignLeft);
     IntroWindowGridLayout->addWidget(hardButton,3,0, Qt::AlignRight);
 
-
     connect(instructionsButton, SIGNAL(clicked()),this, SLOT(openInstrWindow())); //initiates instructions
     connect(startWindowButton, SIGNAL(clicked()),this, SLOT(openGameWindow())); //initiates instructions
     connect(easyButton, SIGNAL(clicked()),this, SLOT(selectEasy()));  //highlights Easy Level
@@ -42,26 +41,17 @@ introWindow::introWindow()
 }
 
 void introWindow::openGameWindow() {
-    gameWindow = new QWidget;
-    gameWindow->setFixedSize(600, 600);
-    gameWindow->setWindowTitle("Save Gene Block");
-    gameWindow->show();
+    GameWindow* game = new GameWindow();
+    game->setFixedSize(600, 600);
+    game->show();
     std::cout << "Game Window opened \n";   //for debugging purposes
 }
 
 //Instructions window
 void introWindow::openInstrWindow() {
-    instr_window = new QWidget;
-    QLabel *instr_text = new QLabel(instr_window);
-    instr_text->setText("Welcome to UCLA Meme Page: Saving Gene Block!\n "
-                        "Uh oh! Gene Block is stuck in the basement of Powell Library and it is up to you to save him.\n"
-                        "Get to the basement door and unlock it to rescue him before the time runs out.\n"
-                        "But beware of the student zombies pulling all-nighters and lurking around Powell.\n"
-                        "Shoot them with Yerba Mates to wake them up before they get to you.\n"
-                        "Use the arrow keys to move and spacebar to shoot. Good luck!\n");
-    instr_text->setAlignment(Qt::AlignCenter);
-    instr_text->show();
-    instr_window->show();
+    InstructionsWindow* instructionsWindow = new InstructionsWindow();
+    instructionsWindow->setFixedSize(500, 400);
+    instructionsWindow->show();
 }
 
 void introWindow::selectEasy(){
