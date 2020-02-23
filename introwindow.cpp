@@ -43,7 +43,6 @@ void introWindow::openGameWindow() {
     gameWindow->setFixedSize(630, 630);
     gameWindow->setWindowTitle("Save Gene Block");
     gameWindow->show();
-    std::cout << "Game Window opened \n";   //for debugging purposes
 }
 
 //Instructions window

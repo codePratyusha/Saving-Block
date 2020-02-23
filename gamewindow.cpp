@@ -12,29 +12,31 @@
 //instr_text->show();
 //instr_window->show();
 
-GameWindow::GameWindow()
+GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
 {
-    //To do: change from layout to scene
-
-    std::string str = "Health: ";
-//    str += std::to_string(maxPlayerHealth);
-
-    playerHealthLabel = new QLabel("Health: ");
-    mainLayout = new QGridLayout;
-
     scene = new QGraphicsScene(this);
 
-    QPixmap userIcon(":/images/player.png");
+    QPixmap userIcon(":/new/images/player.png");
     user = new Player(userIcon);
-    user->setPos(325, 325); //should be middle of game window
+//    user->setPos(400, 250);          //should be middle of game window
+    scene->addItem(user);            //adding player to scene
 
-    scene->addItem(user);
+    scene->setSceneRect(0, 0, width(), height());  //set scene background
+    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+    setScene(scene);                           //setting scene
+    setSceneRect(scene->sceneRect());
 
-    mainLayout->addWidget(playerHealthLabel, 0, 0, Qt::AlignTop);
-    setLayout(mainLayout);
+    //disables scrollbars for Game Window class
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 GameWindow::~GameWindow() {
-    delete playerHealthLabel;
-    delete mainLayout;
+    //free memory
+}
+
+//Move player using WASD keys
+void GameWindow::keyPressEvent(QKeyEvent* event) {
+     user->keyPressEvent(event);
+     user->keyReleaseEvent(event);
 }
