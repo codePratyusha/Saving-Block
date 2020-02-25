@@ -30,30 +30,31 @@ introWindow::introWindow()
     IntroWindowGridLayout->addWidget(easyButton,3,0, Qt::AlignLeft);
     IntroWindowGridLayout->addWidget(hardButton,3,0, Qt::AlignRight);
 
-    connect(instructionsButton, SIGNAL(clicked()),this, SLOT(openInstrWindow())); //initiates instructions
-    connect(startWindowButton, SIGNAL(clicked()),this, SLOT(openGameWindow())); //initiates instructions
-    connect(easyButton, SIGNAL(clicked()),this, SLOT(selectEasy()));  //highlights Easy Level
-    connect(hardButton, SIGNAL(clicked()),this, SLOT(selectHard()));  //highlights Hard Level
+    connect(instructionsButton, SIGNAL(clicked()),this, SLOT(openInstrWindow()));   //initiates instructions
+    connect(startWindowButton, SIGNAL(clicked()),this, SLOT(openGameWindow()));     //initiates instructions
+    connect(easyButton, SIGNAL(clicked()),this, SLOT(selectEasy()));                //highlights Easy Level
+    connect(hardButton, SIGNAL(clicked()),this, SLOT(selectHard()));                //highlights Hard Level
 
     setLayout(IntroWindowGridLayout);
 }
 
 void introWindow::openGameWindow() {
-    GameWindow* game = new GameWindow();
-    game->setFixedSize(600, 600);
-    game->show();
-    std::cout << "Game Window opened \n";   //for debugging purposes
+    gameWindow = new GameWindow();
+    gameWindow->setFixedSize(630, 630);
+    gameWindow->setWindowTitle("Save Gene Block");
+    gameWindow->show();
+    this->close();
 }
 
 //Instructions window
 void introWindow::openInstrWindow() {
-    InstructionsWindow* instructionsWindow = new InstructionsWindow();
+    instructionsWindow = new InstructionsWindow();
     instructionsWindow->setFixedSize(500, 400);
+    instructionsWindow->setWindowTitle("How to Play");
     instructionsWindow->show();
 }
 
 void introWindow::selectEasy(){
-
     easyButton->setStyleSheet("background-color: green");
     hardButton->setStyleSheet("background-color: rgb(77,77,77)");
     isEasy = true;
@@ -62,7 +63,6 @@ void introWindow::selectEasy(){
 }
 
 void introWindow::selectHard(){
-
     hardButton->setStyleSheet("background-color: green");
     easyButton->setStyleSheet("background-color: rgb(77,77,77)");
     isEasy = false;

@@ -4,7 +4,8 @@
 #include <gamewindow.h>
 #include <mainwindow.h>
 
-extern bool isEasy; //global variable (accessible across all files) to set difficulty
+//Currently commented out because to temp solve bug
+/*extern bool isEasy;*/ //global variable (accessible across all files) to set difficulty
 
 class introWindow : public QWidget
 {
@@ -14,11 +15,14 @@ class introWindow : public QWidget
         introWindow();      //Constructor
         ~introWindow();     //Destructor
     public slots:
-        void openInstrWindow();
         void openGameWindow();
+        void openInstrWindow();
         void selectEasy();
         void selectHard();
     private:
+        InstructionsWindow* instructionsWindow = nullptr;
+        GameWindow* gameWindow = nullptr;
+
         //Layout
         QGridLayout* IntroWindowGridLayout = nullptr;
 
@@ -28,6 +32,7 @@ class introWindow : public QWidget
         //Buttons
         QPushButton* startWindowButton = nullptr;
         QPushButton* instructionsButton = nullptr;
+        QPushButton* goBackButton = nullptr;
         QPushButton* easyButton = nullptr;
         QPushButton* hardButton = nullptr;
 };

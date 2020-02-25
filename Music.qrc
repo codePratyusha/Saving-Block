@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/music">
+        <file>Crash Bandicoot Theme.mp3</file>
+    </qresource>
+</RCC>

@@ -9,10 +9,12 @@ class InstructionsWindow : public QWidget
     public:
         InstructionsWindow();
         ~InstructionsWindow();
+    public slots:
+        void goToIntroWindow();
     private:
         QLabel* instructionsText = nullptr;
-        QHBoxLayout* mainLayout = nullptr;
-
+        QGridLayout* mainLayout = nullptr;
+        QPushButton* goBackButton = nullptr;
 };
 
 #endif // INSTRUCTIONSWINDOW_H
