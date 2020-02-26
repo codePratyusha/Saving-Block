@@ -5,11 +5,27 @@ Player::Player(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
     health = easyMaxHealth; //health assigned to 5 (default is easy difficulty)
     xPrevious = pos().x();
     yPrevious = pos().y();
+
+    yerbaDistance = 0;
+    range = 50;
+    // connect a timer to move()
+//    int MOVE_EVERY = 1000 / game->30; //fps = 30
+//    QTimer * timer = new QTimer(this);
+//    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+//    timer->start(MOVE_EVERY);
 }
 
 //Destructor
 Player::~Player() {
     //delete dynamically allocated data members
+}
+
+void Player::updateHealth() {
+    //increment or decrement health
+}
+
+int Player::getHealth() {
+    return health;
 }
 
 //Moves player with WASD keys
@@ -81,4 +97,17 @@ void Player::keyPressEvent(QKeyEvent* event) {
 
 void Player::keyReleaseEvent(QKeyEvent *event){
     keysPressed.remove(event->key());
+}
+
+void Player::shootYerba(QKeyEvent *event) {
+    if (event->key() == Qt::Key_W) {
+        yerba = new YerbaItem();
+        yerbaDistance += 10;
+        // delete the arrow if its past its range
+        if (yerbaDistance > range){
+//            game->scene->removeItem(this);
+//            delete this;
+//            return;
+        }
+    }
 }

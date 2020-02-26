@@ -6,6 +6,9 @@
 #include <mainwindow.h>
 #include <player.h>
 
+//class GameView;
+//extern GameView* game;
+
 class GameWindow : public QGraphicsView
 {
     Q_OBJECT
@@ -17,8 +20,8 @@ class GameWindow : public QGraphicsView
     public slots:
     private:
         QGraphicsScene* scene = nullptr;
-        Player* user = nullptr;
         QMediaPlayer* titleMusic = nullptr;
+        Player* user = nullptr;
         void updateHealth();    //if player is damaged, decrement health by 1
         void endGame();         //if player health is 0, then end game
 };

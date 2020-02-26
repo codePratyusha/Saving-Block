@@ -21,14 +21,16 @@ SOURCES += \
     introwindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    player.cpp
+    player.cpp \
+    yerbaitem.cpp
 
 HEADERS += \
     gamewindow.h \
     instructionswindow.h \
     introwindow.h \
     mainwindow.h \
-    player.h
+    player.h \
+    yerbaitem.h
 
 FORMS += \
     mainwindow.ui
@@ -41,3 +43,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     Images.qrc \
     Music.qrc
+
+DISTFILES +=

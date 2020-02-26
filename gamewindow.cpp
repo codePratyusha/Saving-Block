@@ -6,7 +6,7 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     scene = new QGraphicsScene(this);
 
     //Creating Player object
-    QPixmap userIcon(":/new/images/player.png");
+    QPixmap userIcon(":/game/Stressed_Bruin_Protagonist.png");
     user = new Player(userIcon);
 //    user->setPos(400, 250);          //should be middle of game window
     scene->addItem(user);            //adding player to scene
@@ -36,4 +36,10 @@ GameWindow::~GameWindow() {
 void GameWindow::keyPressEvent(QKeyEvent* event) {
      user->keyPressEvent(event);
      user->keyReleaseEvent(event);
+}
+
+void endGame() {
+//    if (user->getHealth() < 0) {
+//        std::cout << "Player is dead \n";
+//    }
 }

@@ -1,7 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <mainwindow.h>
+//#include <gamewindow.h>
+#include <yerbaitem.h>
 
+#include <QTimer>
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include <QKeyEvent>
@@ -15,7 +18,8 @@ class Player : public QObject, public QGraphicsPixmapItem
         Player(QPixmap& pixmap);
         ~Player();
 
-        int updateHealth();
+        void updateHealth();
+        int getHealth();
         void keyPressEvent(QKeyEvent* event);
         void keyReleaseEvent(QKeyEvent* event);
     public slots:
@@ -28,6 +32,11 @@ class Player : public QObject, public QGraphicsPixmapItem
         int health;                     //health that is decremented
         int xPrevious;
         int yPrevious;
+
+        YerbaItem* yerba = nullptr;
+        void shootYerba(QKeyEvent* event);
+        int yerbaDistance;
+        int range;
 };
 
 #endif // PLAYER_H

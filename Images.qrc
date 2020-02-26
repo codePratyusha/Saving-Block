@@ -1,5 +1,9 @@
 <RCC>
-    <qresource prefix="/new/images">
-        <file>player.png</file>
+    <qresource prefix="/game">
+        <file>images.qrc</file>
+        <file>Calpirg_Zombie.png</file>
+        <file>Yerba_Mate.png</file>
+        <file>Stressed_Bruin_Protagonist.png</file>
+        <file>gene_block.png</file>
     </qresource>
 </RCC>
