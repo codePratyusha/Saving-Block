@@ -17,6 +17,7 @@ class GameWindow : public QGraphicsView
     public slots:
     private:
         QGraphicsScene* scene = nullptr;
+        QImage* gameBackground = nullptr;
         Player* user = nullptr;
         QMediaPlayer* titleMusic = nullptr;
         void updateHealth();    //if player is damaged, decrement health by 1

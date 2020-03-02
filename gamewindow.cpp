@@ -6,7 +6,7 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     scene = new QGraphicsScene(this);
 
     //Creating Player object
-    QPixmap userIcon(":/new/images/player.png");
+    QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");
     user = new Player(userIcon);
 //    user->setPos(400, 250);          //should be middle of game window
     scene->addItem(user);            //adding player to scene
@@ -18,7 +18,11 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     connect(titleMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
 
     //Customizing scene
-    scene->setSceneRect(0, 0, width(), height());  //set scene background
+    scene->setSceneRect(0, 0, width(), height());               //set scene background
+    gameBackground = new QImage(":/images/Tiled Floor.png");    //set scene background to given image
+    QBrush bg_brush(*gameBackground);
+
+    scene->setBackgroundBrush(bg_brush);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
     setScene(scene);                           //setting scene
     setSceneRect(scene->sceneRect());
