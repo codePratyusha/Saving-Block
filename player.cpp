@@ -2,7 +2,6 @@
 
 //Constructor
 Player::Player(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
-    health = easyMaxHealth; //health assigned to 5 (default is easy difficulty)
     xPrevious = pos().x();
     yPrevious = pos().y();
 }

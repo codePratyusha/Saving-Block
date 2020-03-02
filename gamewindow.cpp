@@ -8,7 +8,7 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     //Creating Player object
     QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");
     user = new Player(userIcon);
-//    user->setPos(400, 250);          //should be middle of game window
+    user->setPos(300, 290);          //should be middle of game window
     scene->addItem(user);            //adding player to scene
 
     //Creating music
@@ -21,6 +21,9 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     scene->setSceneRect(0, 0, width(), height());               //set scene background
     gameBackground = new QImage(":/images/Tiled Floor.png");    //set scene background to given image
     QBrush bg_brush(*gameBackground);
+    health = new Health();
+    health->setPos(15, 15);
+    scene->addItem(health);
 
     scene->setBackgroundBrush(bg_brush);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);

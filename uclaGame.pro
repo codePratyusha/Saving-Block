@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     gamewindow.cpp \
+    health.cpp \
     instructionswindow.cpp \
     introwindow.cpp \
     main.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     gamewindow.h \
+    health.h \
     instructionswindow.h \
     introwindow.h \
     mainwindow.h \

@@ -21,6 +21,10 @@ introWindow::introWindow()
     hardButton = new QPushButton("Hard");
     hardButton->setFixedSize(100, 50);
 
+//    QPixmap* gameBackground = new QPixmap(":/images/Background.png");    //set scene background to given image
+//    QBrush*   brush    = new QBrush(*gameBackground);
+//    QBrush bg_brush(*gameBackground);
+
     IntroWindowGridLayout = new QGridLayout;
 
     IntroWindowGridLayout->addWidget(gameTitle,0,0, Qt::AlignCenter);
