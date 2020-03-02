@@ -8,14 +8,14 @@ Health::Health(QGraphicsItem *parent) : QGraphicsTextItem(parent) {
     //draw text
     setPlainText(QString("Health: ") + QString::number(health));
     setDefaultTextColor(Qt::lightGray);
-    setFont(QFont("times",16));
+    setFont(QFont("times", 20));
 }
 
-void Health::decrease(){
+void Health::decrease() {
     health--;
     setPlainText(QString("Health: ") + QString::number(health));
 }
 
-int Health::getHealth(){
+int Health::getHealth() {
     return health;
 }

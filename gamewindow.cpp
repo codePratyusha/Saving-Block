@@ -8,7 +8,7 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     //Creating Player object
     QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");
     user = new Player(userIcon);
-    user->setPos(300, 290);          //should be middle of game window
+    user->setPos(290, 290);
     scene->addItem(user);            //adding player to scene
 
     //Creating music
@@ -36,7 +36,11 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
 }
 
 GameWindow::~GameWindow() {
-    //free memory
+    delete scene;
+    delete gameBackground;
+    delete user;
+    delete health;
+    delete titleMusic;
 }
 
 //Move player using WASD keys
