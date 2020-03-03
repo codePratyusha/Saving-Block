@@ -21,6 +21,8 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     scene->setSceneRect(0, 0, width(), height());               //set scene background
     gameBackground = new QImage(":/images/Tiled Floor.png");    //set scene background to given image
     QBrush bg_brush(*gameBackground);
+
+    //Adding health bar to scene
     health = new Health();
     health->setPos(15, 15);
     scene->addItem(health);
