@@ -9,36 +9,36 @@ bool isEasy;
 
 introWindow::introWindow()
 {
-    isEasy = true; //sets default difficulty to easy
-    isEasySelected = false; //because no difficulty is selected
+    isEasy = true;              //sets default difficulty to easy
+    isEasySelected = false;
     isHardSelected = false;
 
     gameTitle = new QLabel(QString("UCLA Meme Page Game: Saving Gene Block!"));
     gameTitle->setStyleSheet("font: bold 25pt;"
-                            "QLabel{color: rgb(255, 255, 255);}");
+                             "QLabel{color: rgb(255, 255, 255);}");
 
     startWindowButton = new QPushButton("Start");
     startWindowButton->setStyleSheet("font: bold 15pt;"
-                                    "border-color: white;"
-                                    "QLabel{color: rgb(255, 255, 255);}");
+                                     "border-color: white;"
+                                     "background-color: rgba(255, 255, 255, 85);");
     startWindowButton->setFixedSize(100, 50);
 
     instructionsButton = new QPushButton("How To Play");
     instructionsButton->setStyleSheet("font: bold 15pt;"
-                                    "border-color: white;"
-                                    "QLabel{color: rgb(255, 255, 255);}");
+                                      "border-color: white;"
+                                      "background-color: rgba(255, 255, 255, 85);");
     instructionsButton->setFixedSize(140, 60);
 
     easyButton = new QPushButton("Easy");
     easyButton->setStyleSheet("font: bold 15pt;"
-                                    "border-color: white;"
-                                    "QLabel{color: rgb(255, 255, 255);}");
+                              "border-color: white;"
+                              "background-color: rgba(255, 255, 255, 100);");
     easyButton->setFixedSize(100, 50);
 
     hardButton = new QPushButton("Hard");
     hardButton->setStyleSheet("font: bold 15pt;"
-                                    "border-color: white;"
-                                    "QLabel{color: rgb(255, 255, 255);}");
+                              "border-color: white;"
+                              "background-color: rgba(255, 255, 255, 100);");
     hardButton->setFixedSize(100, 50);
 
     //Setting background image
@@ -82,36 +82,46 @@ void introWindow::openInstrWindow() {
 
 void introWindow::selectEasy() {
     isEasySelected = true;
-    isHardSelected = false;
-    easyButton->setStyleSheet("font: bold 15pt;"
-                                "border-color: white;"
-                                "background-color: green");
-    if (isHardSelected == true) {
+    if ((isEasySelected == true) && (isHardSelected == false)) {
+        easyButton->setStyleSheet("font: bold 15pt;"
+                                  "border-color: white;"
+                                  "background-color: rgba(0, 215, 115, 90);");      //green background color
+    } else if ((isHardSelected == true) && (isEasySelected == true)) {
+        isHardSelected = false;
+        easyButton->setStyleSheet("font: bold 15pt;"
+                                  "border-color: white;"
+                                  "background-color: rgba(0, 215, 115, 90);");      //green background color
         hardButton->setStyleSheet("font: bold 15pt;"
                                   "border-color: white;"
-                                  "background-color: green");
-        easyButton->setStyleSheet("font: bold 15pt;"
-                                        "border-color: white;"
-                                        "QLabel{color: rgb(255, 255, 255);}");
+                                  "background-color: rgba(255, 255, 255, 100);");   //white background color
     }
     isEasy = true;
 
-    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
+    //Debugging to console
+//    std::cout << "isEasySelected: " << isEasySelected << "\nisHardSelected: " << isHardSelected << std::endl;
+//    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
 }
 
 void introWindow::selectHard() {
     isHardSelected = true;
-    isEasySelected = false;
-    if (isEasySelected == true) {
+    if ((isHardSelected == true) && (isEasySelected == false)) {
         hardButton->setStyleSheet("font: bold 15pt;"
                                   "border-color: white;"
-                                  "background-color: green");
+                                  "background-color: rgba(235, 75, 50, 90);");      //red background color
+    } else if ((isEasy == true) && (isHardSelected == true)) {
+        isEasySelected = false;
+        hardButton->setStyleSheet("font: bold 15pt;"
+                                  "border-color: white;"
+                                  "background-color: rgba(235, 75, 50, 90);");      //red background color
         easyButton->setStyleSheet("font: bold 15pt;"
-                                        "border-color: white;"
-                                        "QLabel{color: rgb(255, 255, 255);}");
+                                  "border-color: white;"
+                                  "background-color: rgba(255, 255, 255, 100);");   //white background color
     }
     isEasy = false;
-    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
+
+    //Debugging to console
+//    std::cout << "isEasySelected: " << isEasySelected << "\nisHardSelected: " << isHardSelected << std::endl;
+//    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
 }
 
 //Deletes all objects

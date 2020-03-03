@@ -6,10 +6,10 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     scene = new QGraphicsScene(this);
 
     //Creating Player object
-    QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");
-    user = new Player(userIcon);
-    user->setPos(290, 290);
-    scene->addItem(user);            //adding player to scene
+    QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");    //create image for Player object
+    user = new Player(userIcon);                                    //initialize Player object to image
+    user->setPos(290, 290);                                         //set position
+    scene->addItem(user);                                           //add player to scene
 
     //Creating music
     titleMusic= new QMediaPlayer(this);
