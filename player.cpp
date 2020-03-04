@@ -1,7 +1,9 @@
 #include "player.h"
+#include "bullet.h"
 
 //Constructor
 Player::Player(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
+    health = easyMaxHealth; //health assigned to 5 (default is easy difficulty)
     xPrevious = pos().x();
     yPrevious = pos().y();
 }
@@ -54,25 +56,36 @@ void Player::keyPressEvent(QKeyEvent* event) {
     }
 
     //if two keys are being pressed at same time, move player diagonally
-        if (keysPressed.size() > 1){
+    if (keysPressed.size() > 1){
 
-            // up right
-            if (keysPressed.contains(Qt::Key_O)){
-                setPos(x()+STEP_SIZE,y()-STEP_SIZE);
-            }
-            // up left
-            if (keysPressed.contains(Qt::Key_I)){
-                setPos(x()-STEP_SIZE,y()-STEP_SIZE);
-            }
-            // down right
-            if (keysPressed.contains(Qt::Key_L)){
-                setPos(x()+STEP_SIZE,y()+STEP_SIZE);
-            }
-            // down left
-            if (keysPressed.contains(Qt::Key_J)){
-                setPos(x()-STEP_SIZE,y()+STEP_SIZE);
-            }
+        // up right
+        if (keysPressed.contains(Qt::Key_O)){
+            setPos(x()+STEP_SIZE,y()-STEP_SIZE);
         }
+        // up left
+        if (keysPressed.contains(Qt::Key_I)){
+            setPos(x()-STEP_SIZE,y()-STEP_SIZE);
+        }
+        // down right
+        if (keysPressed.contains(Qt::Key_L)){
+            setPos(x()+STEP_SIZE,y()+STEP_SIZE);
+        }
+        // down left
+        if (keysPressed.contains(Qt::Key_J)){
+            setPos(x()-STEP_SIZE,y()+STEP_SIZE);
+        }
+    }
+
+
+    else if (event->key() == Qt::Key_Space)
+    {
+        Bullet * bullet = new Bullet();
+        // bullet->setPos(x(),y());
+        bullet->setPos(mapToScene(50,-5));
+        bullet->setRotation(rotation());
+        //bullet->setRotation(-40);
+        scene()->addItem(bullet);
+    }
 
     xPrevious = pos().x();
     yPrevious = pos().y();
@@ -80,4 +93,24 @@ void Player::keyPressEvent(QKeyEvent* event) {
 
 void Player::keyReleaseEvent(QKeyEvent *event){
     keysPressed.remove(event->key());
+}
+
+void Player::setAngle(double a)
+{
+    angle = a;
+}
+
+double Player::getAngle()
+{
+    return angle;
+}
+
+int Player::getHealth()
+{
+    return health;
+}
+
+QPointF Player::getOrigin(){
+
+    return mapToScene(transformOriginPoint());
 }

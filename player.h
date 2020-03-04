@@ -3,6 +3,7 @@
 #include <mainwindow.h>
 
 #include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QSet>
@@ -18,15 +19,24 @@ class Player : public QObject, public QGraphicsPixmapItem
         int updateHealth();
         void keyPressEvent(QKeyEvent* event);
         void keyReleaseEvent(QKeyEvent* event);
-    public slots:
 
+        void setAngle(double a);
+        double getAngle();
+        int getHealth();
+
+
+        QPointF getOrigin();
+    public slots:
+//        void decreaseHealth();
     private:
         QSet<int> keysPressed;
         const int easyMaxHealth = 5;    //constant health, player health can never exceed value
         const int hardMaxHealth = 2;    //constant health, player health can never exceed value
         const int STEP_SIZE = 20;       //how much player moves
+        int health;                     //health that is decremented
         int xPrevious;
         int yPrevious;
+        double angle;
 };
 
 #endif // PLAYER_H
