@@ -3,6 +3,10 @@
 #include "gamewindow.h"
 #include <QApplication>
 
+//GameWindow now accessible to all classes
+GameWindow * game;
+int gameLevel=1;
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

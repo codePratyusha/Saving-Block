@@ -23,7 +23,8 @@ SOURCES += \
     introwindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    player.cpp
+    player.cpp \
+    zombie.cpp
 
 HEADERS += \
     bullet.h \
@@ -32,7 +33,8 @@ HEADERS += \
     instructionswindow.h \
     introwindow.h \
     mainwindow.h \
-    player.h
+    player.h \
+    zombie.h
 
 FORMS += \
     mainwindow.ui
