@@ -1,4 +1,5 @@
 #include "player.h"
+#include "bullet.h"
 
 //Constructor
 Player::Player(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
@@ -74,10 +75,40 @@ void Player::keyPressEvent(QKeyEvent* event) {
             }
         }
 
+        else if (event->key() == Qt::Key_Space)
+        {
+            Bullet * bullet = new Bullet();
+            // bullet->setPos(x(),y());
+            bullet->setPos(mapToScene(50,-5));
+            bullet->setRotation(rotation());
+            //bullet->setRotation(-40);
+            scene()->addItem(bullet);
+        }
+
     xPrevious = pos().x();
     yPrevious = pos().y();
 }
 
 void Player::keyReleaseEvent(QKeyEvent *event){
     keysPressed.remove(event->key());
+}
+
+void Player::setAngle(double a)
+{
+    angle = a;
+}
+
+double Player::getAngle()
+{
+    return angle;
+}
+
+int Player::getHealth()
+{
+    return health;
+}
+
+QPointF Player::getOrigin(){
+
+    return mapToScene(transformOriginPoint());
 }
