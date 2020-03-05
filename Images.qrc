@@ -1,10 +1,8 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>Calpirg_Zombie.png</file>
-        <file>Background.png</file>
-        <file>gene_block.png</file>
-        <file>Stressed_Bruin_Protagonist.png</file>
+    <qresource prefix="/new/images">
+        <file>player.png</file>
+        <file>yerba mate projectile.jpg</file>
         <file>Yerba_Mate.png</file>
-        <file>Tiled Floor.png</file>
+        <file>Stressed_Bruin_Protagonist.png</file>
     </qresource>
 </RCC>

@@ -5,7 +5,10 @@
 #include <QMediaPlayer>
 #include <mainwindow.h>
 #include <player.h>
-#include <Health.h>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QPointF>
+#include <QSet>
 
 class GameWindow : public QGraphicsView
 {
@@ -15,12 +18,12 @@ class GameWindow : public QGraphicsView
         GameWindow(QWidget* parent = 0);
         ~GameWindow();
         void keyPressEvent(QKeyEvent* event);
+        void mouseMoveEvent(QMouseEvent* event);
+
     public slots:
     private:
         QGraphicsScene* scene = nullptr;
-        QImage* gameBackground = nullptr;
         Player* user = nullptr;
-        Health* health = nullptr;
         QMediaPlayer* titleMusic = nullptr;
         void updateHealth();    //if player is damaged, decrement health by 1
         void endGame();         //if player health is 0, then end game

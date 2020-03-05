@@ -35,9 +35,6 @@ class introWindow : public QWidget
         QPushButton* goBackButton = nullptr;
         QPushButton* easyButton = nullptr;
         QPushButton* hardButton = nullptr;
-
-        bool isEasySelected;
-        bool isHardSelected;
 };
 
 #endif // INTROWINDOW_H
