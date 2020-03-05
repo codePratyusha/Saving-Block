@@ -103,11 +103,6 @@ double Player::getAngle()
     return angle;
 }
 
-int Player::getHealth()
-{
-    return health;
-}
-
 QPointF Player::getOrigin(){
 
     return mapToScene(transformOriginPoint());

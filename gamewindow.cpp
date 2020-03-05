@@ -8,8 +8,14 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     //Creating Player object
     QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");    //create image for Player object
     user = new Player(userIcon);                                    //initialize Player object to image
-    user->setPos(290, 290);                                         //set position
+    user->setPos(150, 150);                                         //set position
     scene->addItem(user);                                           //add player to scene
+
+    //Creating Gene Block object
+    QPixmap geneBlockIcon(":/images/gene_block.png");
+    geneBlock = new GeneBlock(geneBlockIcon);
+    geneBlock->setPos(285, 230);                                         //set position
+    scene->addItem(geneBlock);
 
     //Creating music
     titleMusic= new QMediaPlayer(this);

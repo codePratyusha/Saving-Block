@@ -22,7 +22,6 @@ class Player : public QObject, public QGraphicsPixmapItem
     public slots:
         void setAngle(double a);
         double getAngle();
-        int getHealth();
 
         QPointF getOrigin();
     private:
@@ -30,7 +29,6 @@ class Player : public QObject, public QGraphicsPixmapItem
         const int easyMaxHealth = 5;    //constant health, player health can never exceed value
         const int hardMaxHealth = 2;    //constant health, player health can never exceed value
         const int STEP_SIZE = 20;       //how much player moves
-        int health;
         int xPrevious;
         int yPrevious;
         double angle;

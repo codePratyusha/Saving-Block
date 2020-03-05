@@ -5,6 +5,7 @@
 #include <QMediaPlayer>
 #include <mainwindow.h>
 #include <player.h>
+#include <geneblock.h>
 #include <Health.h>
 #include <QMouseEvent>
 #include <QKeyEvent>
@@ -25,6 +26,7 @@ class GameWindow : public QGraphicsView
         QGraphicsScene* scene = nullptr;
         QImage* gameBackground = nullptr;
         Player* user = nullptr;
+        GeneBlock* geneBlock = nullptr;
         Health* health = nullptr;
         QMediaPlayer* titleMusic = nullptr;
         void updateHealth();    //if player is damaged, decrement health by 1

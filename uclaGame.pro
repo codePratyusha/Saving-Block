@@ -18,21 +18,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bullet.cpp \
     gamewindow.cpp \
+    geneblock.cpp \
     health.cpp \
     instructionswindow.cpp \
     introwindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    player.cpp
+    player.cpp \
+    winwindow.cpp
 
 HEADERS += \
     bullet.h \
     gamewindow.h \
+    geneblock.h \
     health.h \
     instructionswindow.h \
     introwindow.h \
     mainwindow.h \
-    player.h
+    player.h \
+    winwindow.h
 
 FORMS += \
     mainwindow.ui
