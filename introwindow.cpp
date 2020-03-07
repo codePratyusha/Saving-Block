@@ -3,13 +3,9 @@
 #include <QBitmap>
 #include <QFont>
 
-//To Do: make so that easy button is selected by default (include front end coloring)
-
-bool isEasy;
-
 introWindow::introWindow()
 {
-    isEasy = true;              //sets default difficulty to easy
+    isEasy = true;              //sets default difficulty to easy by default
     isEasySelected = false;
     isHardSelected = false;
 
@@ -65,9 +61,12 @@ introWindow::introWindow()
 }
 
 void introWindow::openGameWindow() {
-    gameWindow = new GameWindow();
+    gameWindow = new GameWindow(isEasy);
     gameWindow->setFixedSize(630, 630);
     gameWindow->setWindowTitle("Save Gene Block");
+
+    std::cout << "Game Window Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
+
     gameWindow->show();
     this->close();
 }
@@ -99,7 +98,7 @@ void introWindow::selectEasy() {
 
     //Debugging to console
 //    std::cout << "isEasySelected: " << isEasySelected << "\nisHardSelected: " << isHardSelected << std::endl;
-//    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
+    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
 }
 
 void introWindow::selectHard() {
@@ -121,7 +120,7 @@ void introWindow::selectHard() {
 
     //Debugging to console
 //    std::cout << "isEasySelected: " << isEasySelected << "\nisHardSelected: " << isHardSelected << std::endl;
-//    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
+    std::cout << "Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
 }
 
 //Deletes all objects
@@ -135,6 +134,7 @@ introWindow::~introWindow()
     delete hardButton;
 }
 
-
-
+bool introWindow::getDifficulty() {
+    return isEasy;
+}
 

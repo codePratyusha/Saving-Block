@@ -1,6 +1,6 @@
 #include "gamewindow.h"
 
-GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
+GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
 {
     //Creating scene
     scene = new QGraphicsScene(this);
@@ -13,7 +13,7 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
 
     //Creating Gene Block object
     QPixmap geneBlockIcon(":/images/gene_block.png");
-    geneBlock = new GeneBlock(geneBlockIcon);
+    geneBlock = new GeneBlock(isEasy, geneBlockIcon);
     geneBlock->setPos(285, 230);                                         //set position
     scene->addItem(geneBlock);
 
@@ -29,7 +29,8 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
     QBrush bg_brush(*gameBackground);
 
     //Adding health bar to scene
-    health = new Health();
+//    health = new Health(isEasy);
+    health = geneBlock->geneBlockHealth;
     health->setPos(15, 15);
     scene->addItem(health);
 

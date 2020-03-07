@@ -17,7 +17,7 @@ class GameWindow : public QGraphicsView
     Q_OBJECT
 
     public:
-        GameWindow(QWidget* parent = 0);
+        GameWindow(bool isEasy, QWidget* parent = 0);
         ~GameWindow();
         void keyPressEvent(QKeyEvent* event);
         void mouseMoveEvent(QMouseEvent* event);
