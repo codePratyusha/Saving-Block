@@ -9,9 +9,9 @@ class GeneBlock : public QObject, public QGraphicsPixmapItem
     public:
         GeneBlock(bool isEasyDifficulty, QPixmap& pixmap);
         ~GeneBlock();
-        Health* geneBlockHealth = nullptr;  //data member should be private (to preserve encapsulation)
+        Health* returnGeneBlockHealth() const;
     private:
-//        Health* geneBlockHealth = nullptr;
+        Health* geneBlockHealth = nullptr;
 };
 
 #endif // GENEBLOCK_H

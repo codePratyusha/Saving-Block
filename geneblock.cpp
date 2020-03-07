@@ -7,3 +7,7 @@ GeneBlock::GeneBlock(bool isEasyDifficulty, QPixmap& pixmap) : QObject(), QGraph
 GeneBlock::~GeneBlock() {
     delete geneBlockHealth;
 }
+
+Health* GeneBlock::returnGeneBlockHealth() const {
+    return geneBlockHealth;
+}

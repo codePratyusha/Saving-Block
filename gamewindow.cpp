@@ -14,7 +14,7 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     //Creating Gene Block object
     QPixmap geneBlockIcon(":/images/gene_block.png");
     geneBlock = new GeneBlock(isEasy, geneBlockIcon);
-    geneBlock->setPos(285, 230);                                         //set position
+    geneBlock->setPos((width() / 2) - 35, (height() / 2));  //setting position in middle of board
     scene->addItem(geneBlock);
 
     //Creating music
@@ -29,9 +29,8 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     QBrush bg_brush(*gameBackground);
 
     //Adding health bar to scene
-//    health = new Health(isEasy);
-    health = geneBlock->geneBlockHealth;
-    health->setPos(15, 15);
+    health = geneBlock->returnGeneBlockHealth();
+    health->setPos(20, -55); //setting position at top left
     scene->addItem(health);
 
     scene->setBackgroundBrush(bg_brush);
