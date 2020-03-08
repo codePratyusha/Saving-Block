@@ -23,6 +23,7 @@ public slots:
 private:
     int damage;
     int distance_traveled;
+
     int range;
 
 };
