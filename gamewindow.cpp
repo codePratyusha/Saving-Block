@@ -27,7 +27,7 @@ GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
 
             //Level 1 - has 2 zombies
             if(gameLevel==1){
-                addNumZombies(2);
+                addNumZombies(50);
             }
             else if(gameLevel==2){
                 addNumZombies(4);
@@ -120,19 +120,27 @@ void GameWindow::addNumZombies(int num){
 
 
 
-       // X coordinate + upto +-30 squares around it, Y is +-70 from position )
-
-        zombieContainer[i]->setPos(rand_x, rand_y);
-        //zombieContainer[i]->
+        //zombieContainer[i]->setPos(rand_x, rand_y);
+        zombieContainer[i]->setX(rand_x);
+        zombieContainer[i]->setY(rand_y);
+        //zombieContainer[i]->setX(rand_x);
+       // zombieCo
       //  std::cout <<"x: " << rand_x << " y: " << rand_y << std::endl; //DEBUG
-        zombieContainer[i]->setScale(0.18);
+        zombieContainer[i]->setScale(0.2);
+
+        int r = rand()% 4 + 1;
+        if(r==1){
+            zombieContainer[i]->setDir('R');
+        }else if(r==2){
+            zombieContainer[i]->setDir('L');
+        }else if(r==3){
+            zombieContainer[i]->setDir('U');
+        }else if(r==4){
+            zombieContainer[i]->setDir('D');
+        }
+
         scene->addItem(zombieContainer[i]);
 
-        //std::cout<< "Zombies added " << i << std::endl; //DEBUG
-
-        //TEMP
-
-        //rand()%(max-min)+min;
     }
 }
 

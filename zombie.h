@@ -27,14 +27,18 @@ public:
 
     //Modifiers
     void setHealth();
-    void setDir();
+    void setDir(char c);
 
 
     void decreaseHealth(int amount);  //decreases health by amount
     void Gene();  //function that finds player using algo
     void hurtGene();   //function that hurts geneBlock when it coollifes
+
+
+public slots:
+    void move();
     //void doSomething();  // function that checks the status of the zombie, if zombie !isDead then call findPlayer()- called every second of the game
-    int binary_search(int x_player, int y_player, int x_pos, int y_pos);
+    //int binary_search(int x_player, int y_player, int x_pos, int y_pos);
 
 
 

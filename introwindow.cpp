@@ -66,7 +66,7 @@ introWindow::introWindow()
 
 void introWindow::openGameWindow() {
     gameWindow = new GameWindow();
-    gameWindow->setFixedSize(630, 630);
+    gameWindow->setFixedSize(680, 680);
     gameWindow->setWindowTitle("Save Gene Block");
     gameWindow->show();
     this->close();
