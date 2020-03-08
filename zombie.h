@@ -11,37 +11,37 @@
 #include <map>
 #include <iostream>
 
-template<typename F, typename S>
-class coordPair{
+//template<typename F, typename S>
+//class coordPair{
 
-public:
-    coordPair(const F a, const S b);
-    F get_rowCoordInPair() const;
-    F set_rowCoordInPair();
-    S get_colCoordInPair() const;
-    S set_colCoordInPair();
+//public:
+//    coordPair(const F a, const S b);
+//    F get_rowCoordInPair() const;
+//    F set_rowCoordInPair();
+//    S get_colCoordInPair() const;
+//    S set_colCoordInPair();
 
-private:
-    F row_coord;
-    S col_coord;
-};
+//private:
+//    F row_coord;
+//    S col_coord;
+//};
 
-template<typename F, typename S>
-coordPair<F, S>::coordPair(const F a, const S b)
-{
- row_coord = a;
- col_coord = b;
-}
-template<typename F, typename S>
-F coordPair<F, S>::get_rowCoordInPair() const
-{
- return row_coord;
-}
-template<typename F, typename S>
-S coordPair<F, S>::get_colCoordInPair() const
-{
- return col_coord;
-}
+//template<typename F, typename S>
+//coordPair<F, S>::coordPair(const F a, const S b)
+//{
+// row_coord = a;
+// col_coord = b;
+//}
+//template<typename F, typename S>
+//F coordPair<F, S>::get_rowCoordInPair() const
+//{
+// return row_coord;
+//}
+//template<typename F, typename S>
+//S coordPair<F, S>::get_colCoordInPair() const
+//{
+// return col_coord;
+//}
 
 class Zombie: public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
@@ -74,7 +74,7 @@ public:
 
 public slots:
     //void move();
-    void setPathToGene(); //sets path from source to target
+    void setPathToGene(int sourceRow, int sourceCol, int targRow, int targCol); //sets path from source to target
     void moveToGene();  //moves to Gene
     //void doSomething();  // function that checks the status of the zombie, if zombie !isDead then call findPlayer()- called every second of the game
     //int binary_search(int x_player, int y_player, int x_pos, int y_pos);

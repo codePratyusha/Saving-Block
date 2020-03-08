@@ -26,6 +26,15 @@ Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
             direction = 'R';
             k = 0;
 
+
+            //initialize zombieMap
+            for(int i=0; i<26; i++){
+                for(int j=0; j<31; j++){
+                   this->zombieMap[i][j] ='.';
+                }
+            }
+
+
             //QTimer* timer = new QTimer(this);
             timer->singleShot(1000,this,SLOT(moveToGene()));
             //connect(timer, SIGNAL(timeout()), this, SLOT(moveToGene()));
@@ -107,10 +116,10 @@ Zombie::~Zombie(){}
 
 //}
 
-void Zombie::setPathToGene(){
+void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ){
 
-    int row_src = 10;  //replace hardcoded values with params
-    int col_src = 23;
+//    int row_src = 10;  //replace hardcoded values with params
+//    int col_src = 23;
 
     int R=26;
     int C= 31;
@@ -124,13 +133,13 @@ void Zombie::setPathToGene(){
         }
     }
 
-    for(int i=0; i<26; i++){
-        for(int j=0; j< 31; j++){
-            m[i][j]='.';
-        }
-    }
+//    for(int i=0; i<26; i++){
+//        for(int j=0; j< 31; j++){
+//            m[i][j]='.';
+//        }
+//    }
 
-    m[16][16]= 'E';
+    this->zombieMap[row_targ][col_targ]= 'E';
 
     //Declare a map that has Nodes for their key values and parents for their mapped values
     std::map<std::pair<int,int>, std::pair<int,int>> mymap;
@@ -157,7 +166,7 @@ void Zombie::setPathToGene(){
                q.pop();
 
                // Destination found- if p node is the end node//
-               if (m[p.row][p.col] == 'E'){
+               if (this->zombieMap[p.row][p.col] == 'E'){
                    std::pair<int,int> c = std::pair<int, int>(p.row,p.col);
                    std::pair<int,int> parent = std::pair<int, int>(p.parent->row, p.parent->col);
                    mymap.insert(std::pair<std::pair<int,int>,std::pair<int,int>>(c, parent));
@@ -239,32 +248,32 @@ void Zombie::setPathToGene(){
 
            //this->mypath;
            //std::vector<std::pair<int,int>> mypath;
-           int target_x = 16;
-           int target_y =16;
-           int source_x = 10;
-           int source_y = 23;
+//           int target_row = 15;
+//           int target_col =12;
+//           int source_row = 10; //
+//           int source_col = 23; //
 
            //Store target pair
-           this->mypath.push_back({target_x, target_y});
+           this->mypath.push_back({row_targ, col_targ});
 
            //Store parents of target pair
 
 
-           int key_x=target_x;
-           int key_y=target_y;
+           int key_row=row_targ;
+           int key_col=col_targ;
 
            //find parents of current nodes and store in the vector
 
-                   while(!(key_x==source_x && key_y == source_y)){
+                   while(!(key_row==row_src && key_col == col_src)){
                       // std::cout<< "key_x: " << key_x << "key y: " << key_y << std::endl; //DEBUG
-                       std::pair<int,int> p = mymap.find({key_x,key_y})->second;
+                       std::pair<int,int> p = mymap.find({key_row,key_col})->second;
                        this->mypath.push_back(p);
                       // std::cout<< "parent_x: " << p.first << "parent y: " << p.second << std::endl; DEBUG
-                       key_x = p.first;
-                       key_y = p.second;
+                       key_row = p.first;
+                       key_col = p.second;
                    }
 
-                   this->mypath.push_back({source_x, source_y});
+                   this->mypath.push_back({row_src, col_src});
 
            //reverse vector to get path right way round
                    std::reverse(this->mypath.begin(),this->mypath.end());
@@ -304,9 +313,10 @@ void Zombie::moveToGene(){
     this->k = this->k+1;
 
     this->setPos(X, Y);
+    std::cout << "row: " << X << "col: " << Y << std::endl;
 
     if(this->k < this->mypath.size()){
-        this->timer->singleShot(1000,this,SLOT(moveToGene()));
+        this->timer->singleShot(500,this,SLOT(moveToGene()));
     }
 
 
