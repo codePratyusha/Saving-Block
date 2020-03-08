@@ -1,10 +1,11 @@
 #include "mainwindow.h"
+#include "introwindow.h"
 #include "gamewindow.h"
-
-#include <introwindow.h>
-#include "winwindow.h"
-
 #include <QApplication>
+
+//GameWindow now accessible to all classes
+GameWindow * game;
+int gameLevel=1;
 
 int main(int argc, char *argv[])
 {
@@ -13,9 +14,5 @@ int main(int argc, char *argv[])
     w.setFixedSize(640,480);
     w.setWindowTitle("UCLA Game");
     w.show();
-
-//    WinWindow w;
-//    w.setFixedSize(630,450);
-//    w.show();
     return a.exec();
 }

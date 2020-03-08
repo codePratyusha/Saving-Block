@@ -4,14 +4,16 @@
 #include <gamewindow.h>
 #include <mainwindow.h>
 
+//Currently commented out because to temp solve bug
+/*extern bool isEasy;*/ //global variable (accessible across all files) to set difficulty
+
 class introWindow : public QWidget
 {
     Q_OBJECT
 
     public:
-        introWindow();          //Constructor
-        ~introWindow();         //Destructor
-        bool getDifficulty();   //Get difficulty of game
+        introWindow();      //Constructor
+        ~introWindow();     //Destructor
     public slots:
         void openGameWindow();
         void openInstrWindow();
@@ -34,7 +36,6 @@ class introWindow : public QWidget
         QPushButton* easyButton = nullptr;
         QPushButton* hardButton = nullptr;
 
-        bool isEasy;
         bool isEasySelected;
         bool isHardSelected;
 };

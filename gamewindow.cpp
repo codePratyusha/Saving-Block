@@ -1,6 +1,12 @@
 #include "gamewindow.h"
+#include "zombie.h"
+#include <vector>
+#include <iostream> //FOR DEBUG ONLY
+#include <stdlib.h>
 
-GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
+extern int gameLevel;
+
+GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
 {
     //Creating scene
     scene = new QGraphicsScene(this);
@@ -8,14 +14,34 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     //Creating Player object
     QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");    //create image for Player object
     user = new Player(userIcon);                                    //initialize Player object to image
-    user->setPos(150, 150);                                         //set position
+    user->setPos(290, 290);                                         //set position
+    user->setScale(1.1);
     scene->addItem(user);                                           //add player to scene
 
-    //Creating Gene Block object
-    QPixmap geneBlockIcon(":/images/gene_block.png");
-    geneBlock = new GeneBlock(isEasy, geneBlockIcon);
-    geneBlock->setPos((width() / 2) - 35, (height() / 2));  //setting position in middle of board
-    scene->addItem(geneBlock);
+    QPixmap zombieIcon(":/images/zombieRight.png");
+
+     //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
+    //    For each level, set an initial number of zombies available and visible
+
+    //    Vector of ptrs to Zombies initialized
+
+            //Level 1 - has 2 zombies
+            if(gameLevel==1){
+                addNumZombies(2);
+            }
+            else if(gameLevel==2){
+                addNumZombies(4);
+            }
+            else if(gameLevel==3){
+                addNumZombies(6);
+            }
+            else if(gameLevel==4){
+               addNumZombies(10);
+            }
+
+           //zombie->setPos(10, 490);  //**TODO: Set random position for this bounds: top left (10,0), top right (580,0), bottom left (10,490), bottom right***//
+           // std::cout<< "zombiecontainersize2: " << zombieContainer.size()<< std::endl; //DEBUG
+
 
     //Creating music
     titleMusic= new QMediaPlayer(this);
@@ -29,8 +55,8 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     QBrush bg_brush(*gameBackground);
 
     //Adding health bar to scene
-    health = geneBlock->returnGeneBlockHealth();
-    health->setPos(20, -55); //setting position at top left
+    health = new Health();
+    health->setPos(15, 15);
     scene->addItem(health);
 
     scene->setBackgroundBrush(bg_brush);
@@ -72,3 +98,190 @@ void GameWindow::mouseMoveEvent(QMouseEvent *event){
     user->setRotation(angle);
     user->setAngle(angle); // player's angle property is used to determine rotation of spawned arrows
 }
+
+
+
+//Adds given number of zombies to the GameWindow
+void GameWindow::addNumZombies(int num){
+
+    QPixmap zombieIcon(":/images/zombieRight.png");
+
+    for(int i=0; i<num; i++){
+        zombie = new Zombie(zombieIcon);
+        GameWindow::zombieContainer.push_back(zombie);
+            }
+    //set zombie represenations of the zombies in the container
+    for (size_t i=0; i < zombieContainer.size(); i++){
+        //get random position for the zombie
+
+
+        int rand_x = (rand() % 570 + 10);
+        int rand_y = (rand() % 490 + 0);
+
+
+
+       // X coordinate + upto +-30 squares around it, Y is +-70 from position )
+
+        zombieContainer[i]->setPos(rand_x, rand_y);
+        //zombieContainer[i]->
+      //  std::cout <<"x: " << rand_x << " y: " << rand_y << std::endl; //DEBUG
+        zombieContainer[i]->setScale(0.18);
+        scene->addItem(zombieContainer[i]);
+
+        //std::cout<< "Zombies added " << i << std::endl; //DEBUG
+
+        //TEMP
+
+        //rand()%(max-min)+min;
+    }
+}
+
+     //zombie->findPlayer();
+
+
+
+
+
+
+
+
+
+
+
+
+//GameWindow::GameWindow(QWidget* parent) : QGraphicsView(parent)
+//{
+//    //Creating scene
+//    scene = new QGraphicsScene(this);
+
+//    //Creating Player object
+//    QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");
+//    user = new Player(userIcon);
+//    user->setPos(290, 290);
+//    user->setScale(1.1);
+//    scene->addItem(user);            //adding player to scene
+
+
+//    //A vector of type Zombie* is a public member of GameWindow
+//    //Initialize the zombies in the zombieContainer by adding new zombies to it depending on the level
+
+//    //QPixmap zombieIcon(":/images/zombieRight.png");
+
+//  //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
+//    //For each level, set an initial number of zombies available and visible
+
+//    //Vector of ptrs to Zombies initialized
+
+//        //Level 1 - has 2 zombies
+//        if(gameLevel==1){
+//            addNumZombies(2);
+//        }
+//        else if(gameLevel==2){
+//            addNumZombies(4);
+//        }
+//        else if(gameLevel==3){
+//            addNumZombies(6);
+//        }
+//        else if(gameLevel==4){
+//           addNumZombies(10);
+//        }
+
+//       //zombie->setPos(10, 490);  //**TODO: Set random position for this bounds: top left (10,0), top right (580,0), bottom left (10,490), bottom right***//
+//      //zombie->setScale(0.17); //scale the zombie
+//      // scene->addItem(zombie);
+//       // std::cout<< "zombiecontainersize2: " << zombieContainer.size()<< std::endl; //DEBUG
+
+
+
+
+
+ //Creating Zombie object
+//  QPixmap zombieIcon(":/images/zombieRight.png");
+//   zombie = new Zombie(zombieIcon);
+//   zombie->setPos(10, 490);  //**TODO: Set random position for this bounds: top left (10,0), top right (580,0), bottom left (10,490), bottom right***//
+//   zombie->setScale(0.17); //scale the zombie
+//   scene->addItem(zombie);
+
+
+
+
+
+//    //Creating music
+//    titleMusic= new QMediaPlayer(this);
+//    titleMusic->setMedia(QUrl("qrc:/new/music/Crash Bandicoot Theme.mp3"));
+//    titleMusic->play();
+//    connect(titleMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
+
+//    //Customizing scene
+//    scene->setSceneRect(0, 0, width(), height());               //set scene background
+//    gameBackground = new QImage(":/images/Tiled Floor.png");    //set scene background to given image
+//    QBrush bg_brush(*gameBackground);
+//    health = new Health();
+//    health->setPos(15, 15);
+//    scene->addItem(health);
+
+//    scene->setBackgroundBrush(bg_brush);
+//    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+//    setScene(scene);                           //setting scene
+//    setSceneRect(scene->sceneRect());
+
+//    //disabling scrollbars for Game Window class
+//    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+
+
+//}
+
+//GameWindow::~GameWindow() {
+//    delete scene;
+//    delete gameBackground;
+//    delete user;
+//    delete health;
+//    delete titleMusic;
+
+//}
+
+//Move player using WASD keys
+//void GameWindow::keyPressEvent(QKeyEvent* event) {
+//     user->keyPressEvent(event);
+//     user->keyReleaseEvent(event);
+//}
+
+
+//Adds given number of zombies to the GameWindow
+//void GameWindow::addNumZombies(int num){
+
+//    QPixmap zombieIcon(":/images/zombieRight.png");
+
+//    for(int i=0; i<num; i++){
+//        zombie = new Zombie(zombieIcon);
+//        GameWindow::zombieContainer.push_back(zombie);
+//            }
+//    //set zombie represenations of the zombies in the container
+//    for (size_t i=0; i < zombieContainer.size(); i++){
+//        //get random position for the zombie
+
+
+//        int rand_x = (rand() % 570 + 10);
+//        int rand_y = (rand() % 490 + 0);
+
+
+//        //then check if the coordinate is blocked by another zombie, if not then return true for isPosValid()? - DEBUG ZOMBIES HITTING EACH OTHER //**TODO**//
+//        //if isPosValid()=1, set the zombieContainer[i] to that position
+//        //invalidate that position on the gameMap array and the surrounding areas around it (depending on the size of the zombie -- X coordinate + upto +-30 squares around it, Y is +-70 from position )
+
+//        zombieContainer[i]->setPos(rand_x, rand_y);
+//        //zombieContainer[i]->
+//      //  std::cout <<"x: " << rand_x << " y: " << rand_y << std::endl; //DEBUG
+//        zombieContainer[i]->setScale(0.18);
+//        scene->addItem(zombieContainer[i]);
+
+//        //std::cout<< "Zombies added " << i << std::endl; //DEBUG
+
+//        //TEMP
+
+//        //rand()%(max-min)+min;
+//    }
+
+//     //zombie->findPlayer();
