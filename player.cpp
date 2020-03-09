@@ -107,3 +107,4 @@ QPointF Player::getOrigin(){
 
     return mapToScene(transformOriginPoint());
 }
+

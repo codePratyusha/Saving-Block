@@ -3,9 +3,10 @@
 #include <QBitmap>
 #include <QFont>
 
+
 introWindow::introWindow()
 {
-    isEasy = true;              //sets default difficulty to easy by default
+    isEasy = true;              //sets default difficulty to easy
     isEasySelected = false;
     isHardSelected = false;
 
@@ -62,7 +63,7 @@ introWindow::introWindow()
 
 void introWindow::openGameWindow() {
     gameWindow = new GameWindow(isEasy);
-    gameWindow->setFixedSize(630, 630);
+    gameWindow->setFixedSize(680, 680);
     gameWindow->setWindowTitle("Save Gene Block");
 
     std::cout << "Game Window Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
@@ -137,4 +138,6 @@ introWindow::~introWindow()
 bool introWindow::getDifficulty() {
     return isEasy;
 }
+
+
 
