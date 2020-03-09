@@ -1,26 +1,18 @@
 #ifndef WINWINDOW_H
 #define WINWINDOW_H
 #include <mainwindow.h>
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include <QGraphicsTextItem>
 
-class WinWindow : public QGraphicsView
+class WinWindow : public QWidget
 {
     Q_OBJECT
 
     public:
-        WinWindow(QWidget* parent = 0);
+        WinWindow();
         ~WinWindow();
-    public slots:
-
     private:
-        QLabel* youWinText = nullptr;
-        QGraphicsScene* winScene = nullptr;
-        QImage* winBackground = nullptr;
-
-        void animateGeneBlock();
-        void animateYerba();
+        QGridLayout* winWindowGridLayout = nullptr;
+        QLabel* winTitle = nullptr;
+        QPushButton* quitButton = nullptr;
 };
 
 #endif // WINWINDOW_H

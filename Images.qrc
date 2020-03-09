@@ -2,10 +2,13 @@
     <qresource prefix="/images">
         <file>Calpirg_Zombie.png</file>
         <file>Background.png</file>
-        <file>gene_block.png</file>
-        <file>Stressed_Bruin_Protagonist.png</file>
-        <file>Yerba_Mate.png</file>
         <file>Tiled Floor.png</file>
         <file>winWindowBackground.png</file>
+        <file>yerbe_mate.png</file>
+        <file>daddy_block.png</file>
+        <file>sad_bruin.png</file>
+        <file>gravestone.png</file>
+        <file>loseWindowBackground.png</file>
+        <file>rain.gif</file>
     </qresource>
 </RCC>

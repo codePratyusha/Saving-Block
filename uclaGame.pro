@@ -22,6 +22,7 @@ SOURCES += \
     health.cpp \
     instructionswindow.cpp \
     introwindow.cpp \
+    losewindow.cpp \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     health.h \
     instructionswindow.h \
     introwindow.h \
+    losewindow.h \
     mainwindow.h \
     player.h \
     winwindow.h

@@ -6,13 +6,13 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     scene = new QGraphicsScene(this);
 
     //Creating Player object
-    QPixmap userIcon(":/images/Stressed_Bruin_Protagonist.png");    //create image for Player object
-    user = new Player(userIcon);                                    //initialize Player object to image
-    user->setPos(150, 150);                                         //set position
-    scene->addItem(user);                                           //add player to scene
+    QPixmap userIcon(":/images/sad_bruin.png");     //create image for Player object
+    user = new Player(userIcon);                    //initialize Player object to image
+    user->setPos(150, 150);                         //set position
+    scene->addItem(user);                           //add player to scene
 
     //Creating Gene Block object
-    QPixmap geneBlockIcon(":/images/gene_block.png");
+    QPixmap geneBlockIcon(":/images/daddy_block.png");
     geneBlock = new GeneBlock(isEasy, geneBlockIcon);
     geneBlock->setPos((width() / 2) - 35, (height() / 2));  //setting position in middle of board
     scene->addItem(geneBlock);

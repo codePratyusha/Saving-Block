@@ -6,13 +6,13 @@
 
 Bullet::Bullet():QObject(), QGraphicsPixmapItem()
 {
-    setPixmap(QPixmap(":/images/Yerba_Mate.png").scaled(50, 50, Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":/images/yerbe_mate.png").scaled(50, 50, Qt::KeepAspectRatio));
 
     distance_traveled = 0;
     range = 650;
     damage = 1;
 
-    QTimer * timer = new QTimer(this);
+    QTimer* timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(50);
 }
@@ -47,7 +47,6 @@ void Bullet::move()
             delete this;
             return;
         }
-
 }
 
 int Bullet::getDamage(){
