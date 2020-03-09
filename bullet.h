@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QGraphicsRectItem>
+#include <QList>
 
 class Bullet: public QObject, public QGraphicsPixmapItem
 {
@@ -23,7 +24,6 @@ public slots:
 private:
     int damage;
     int distance_traveled;
-
     int range;
 
 };
