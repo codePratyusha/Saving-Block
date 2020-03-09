@@ -44,6 +44,8 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     button_layout->addWidget(muteSoundButton, 0,2,1,1, Qt::AlignTop);
     setLayout(button_layout);
 
+    connect(muteSoundButton, SIGNAL(clicked()),this, SLOT(muteSound()));
+
     //muteSoundButton->setLayout(button_layout);
     // muteSoundButton->set
     //scene->addWidget(muteSoundButton)
@@ -135,5 +137,7 @@ void GameWindow::addNumZombies(int num){
 }
 
 
-
+void GameWindow::muteSound(){
+    titleMusic->stop();
+}
 
