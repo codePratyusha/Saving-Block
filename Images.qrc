@@ -1,14 +1,15 @@
 <RCC>
     <qresource prefix="/images">
-        <file>Calpirg_Zombie.png</file>
+        <file>zombieRight.png</file>
         <file>Background.png</file>
-        <file>Tiled Floor.png</file>
-        <file>winWindowBackground.png</file>
-        <file>yerbe_mate.png</file>
+        <file>Calpirg_Zombie.png</file>
         <file>daddy_block.png</file>
-        <file>sad_bruin.png</file>
         <file>gravestone.png</file>
         <file>loseWindowBackground.png</file>
+        <file>sad_bruin.png</file>
+        <file>winWindowBackground.png</file>
         <file>rain.gif</file>
+        <file>yerbe_mate.png</file>
+        <file>Tiled Floor.png</file>
     </qresource>
 </RCC>

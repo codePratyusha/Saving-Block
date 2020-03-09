@@ -1,4 +1,5 @@
 #include "bullet.h"
+#include "zombie.h"
 #include <QTimer>
 #include <QList>
 #include <qmath.h>
@@ -10,15 +11,48 @@ Bullet::Bullet():QObject(), QGraphicsPixmapItem()
 
     distance_traveled = 0;
     range = 650;
-    damage = 1;
+    damage = 50;
 
-    QTimer* timer = new QTimer(this);
+    QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(50);
 }
 
 void Bullet::move()
 {
+    //if bullet hits zombies, delete both
+    QList<QGraphicsItem *> colliding_items = collidingItems();
+    for (int i = 0, n = colliding_items.size(); i < n; ++i)
+    {
+        if (typeid(*(colliding_items[i])) == typeid(Zombie))
+        {
+            Zombie * attacked_object = dynamic_cast<Zombie *>(colliding_items[i]);
+            attacked_object->decreaseHealth(damage);
+            //remove bullet every time
+            //scene()->removeItem(this);
+            //delete this;
+            //check if zombie dead
+            if (attacked_object->getHealth() <= 0)
+            {
+                scene()->removeItem(attacked_object);
+                scene()->removeItem(this);
+                //delete attacked_object;
+                //delete attacked_object;   //ADDED
+                //attacked_object = nullptr;
+                delete this;
+                return;
+            }
+            else
+            {
+                scene()->removeItem(this);
+                delete this;
+                return;
+            }
+
+        }
+    }
+
+
     int STEP_SIZE = 45;
 
         // find the dx and dy
@@ -47,6 +81,8 @@ void Bullet::move()
             delete this;
             return;
         }
+
+
 }
 
 int Bullet::getDamage(){
