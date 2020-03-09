@@ -276,11 +276,11 @@ void Zombie::decreaseHealth(int amount)
 {
     health = health-amount;
 }
-void Zombie::Gene()
-{
+//void Zombie::Gene()
+//{
 
-}
-void Zombie::hurtGene()
-{
+//}
+//void Zombie::hurtGene()
+//{
 
-}
+//}
