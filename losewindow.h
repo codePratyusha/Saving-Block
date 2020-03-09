@@ -3,6 +3,7 @@
 #include <mainwindow.h>
 #include <QMovie>
 #include <QRectF>
+#include <QMediaPlayer>
 
 class LoseWindow : public QWidget
 {
@@ -24,6 +25,8 @@ class LoseWindow : public QWidget
 
         QMovie* rain3 = nullptr;
         QLabel* rainLabel3 = nullptr;
+
+        QMediaPlayer* lostWindowMusic = nullptr;
 };
 
 #endif // LOSEWINDOW_H

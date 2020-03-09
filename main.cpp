@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     w.setWindowTitle("UCLA Game");
     w.show();
 
-//    WinWindow w;
+//    LoseWindow w;
 //    w.setFixedSize(720,480);
 //    w.show();
     return a.exec();

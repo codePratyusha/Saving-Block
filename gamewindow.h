@@ -19,32 +19,25 @@
 class GameWindow : public QGraphicsView
 {
     Q_OBJECT
-
-    public:
 public:
     GameWindow(bool isEasy, QWidget* parent = 0);
     ~GameWindow();
     void keyPressEvent(QKeyEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void addNumZombies(int num);
+private:
+    QPushButton *muteSoundButton;
+    QGraphicsScene* scene = nullptr;
+    QImage* gameBackground = nullptr;
+    Player* user = nullptr;
+    GeneBlock* geneBlock = nullptr;
+    Health* health = nullptr;
+    QMediaPlayer* titleMusic = nullptr;
+    Zombie* zombie = nullptr;
+    std::vector<Zombie*> zombieContainer; //vector of ptrs to zombies
 
-public slots:
-
-
-
-    private:
-        QPushButton *muteSoundButton;
-        QGraphicsScene* scene = nullptr;
-        QImage* gameBackground = nullptr;
-        Player* user = nullptr;
-        GeneBlock* geneBlock = nullptr;
-        Health* health = nullptr;
-        QMediaPlayer* titleMusic = nullptr;
-        Zombie* zombie = nullptr;
-        std::vector<Zombie*> zombieContainer; //vector of ptrs to zombies
-
-        void updateHealth();    //if player is damaged, decrement health by 1
-        void endGame();         //if player health is 0, then end game
+    void updateHealth();    //if player is damaged, decrement health by 1
+    void endGame();         //if player health is 0, then end game
 };
 
 #endif // GAMEWINDOW_H

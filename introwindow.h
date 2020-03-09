@@ -37,6 +37,8 @@ class introWindow : public QWidget
         bool isEasy;
         bool isEasySelected;
         bool isHardSelected;
+
+        QMediaPlayer* introMusic = nullptr;
 };
 
 #endif // INTROWINDOW_H

@@ -19,41 +19,21 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     scene->addItem(user);                                           //add player to scene
 
     //Creating Gene Block object
-        QPixmap geneBlockIcon(":/images/daddy_block.png");
-        geneBlock = new GeneBlock(isEasy, geneBlockIcon);
-        geneBlock->setPos(300,240);
-        //geneBlock->setPos((width() / 2) - 35, (height() / 2));  //setting position in middle of board
-        scene->addItem(geneBlock);
+    QPixmap geneBlockIcon(":/images/daddy_block.png");
+    geneBlock = new GeneBlock(isEasy, geneBlockIcon);
+    geneBlock->setPos((width() / 2) - 35, (height() / 2));  //setting position in middle of board
+    scene->addItem(geneBlock);
 
+    //Creating zombie object
+    QPixmap zombieIcon(":/images/zombieRight.png");
+    addNumZombies(3);
 
-     //Creating zombie object
-        QPixmap zombieIcon(":/images/zombieRight.png");
-        addNumZombies(3);
-
-     //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
+    //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
     //    For each level, set an initial number of zombies available and visible
-
-    //    Vector of ptrs to Zombies initialized
-
-//            //Level 1 - has 2 zombies
-//            if(gameLevel==1){
-//                addNumZombies(3);
-//            }
-//            else if(gameLevel==2){
-//                addNumZombies(4);
-//            }
-//            else if(gameLevel==3){
-//                addNumZombies(6);
-//            }
-//            else if(gameLevel==4){
-//               addNumZombies(10);
-//            }
-
-
 
     //Creating music and mute button
     titleMusic= new QMediaPlayer(this);
-    titleMusic->setMedia(QUrl("qrc:/new/music/Crash Bandicoot Theme.mp3"));
+    titleMusic->setMedia(QUrl("qrc:/music/Crash Bandicoot Theme.mp3"));
     titleMusic->play();
     connect(titleMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
     QPushButton *muteSoundButton = new QPushButton(tr("Mute"));
@@ -65,7 +45,7 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     setLayout(button_layout);
 
     //muteSoundButton->setLayout(button_layout);
-   // muteSoundButton->set
+    // muteSoundButton->set
     //scene->addWidget(muteSoundButton)
     //muteSoundButton->setLayout()
     //scene->addWidget(muteSoundButton); //addWidget(muteSoundButton, 1, 1);
@@ -76,9 +56,9 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     QBrush bg_brush(*gameBackground);
 
     //Adding health bar to scene
-        health = geneBlock->returnGeneBlockHealth();
-        health->setPos(20, -55); //setting position at top left
-        scene->addItem(health);
+    health = geneBlock->returnGeneBlockHealth();
+    health->setPos(0, -70); //setting position at top left
+    scene->addItem(health);
 
     scene->setBackgroundBrush(bg_brush);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -101,8 +81,8 @@ GameWindow::~GameWindow() {
 
 //Move player using WASD keys
 void GameWindow::keyPressEvent(QKeyEvent* event) {
-     user->keyPressEvent(event);
-     user->keyReleaseEvent(event);
+    user->keyPressEvent(event);
+    user->keyReleaseEvent(event);
 }
 
 void GameWindow::mouseMoveEvent(QMouseEvent *event){
@@ -130,7 +110,7 @@ void GameWindow::addNumZombies(int num){
     for(int i=0; i<num; i++){
         zombie = new Zombie(zombieIcon);
         GameWindow::zombieContainer.push_back(zombie);
-            }
+    }
     //set zombie represenations of the zombies in the container
     for (size_t i=0; i < zombieContainer.size(); i++){
         //get random position for the zombie
@@ -146,13 +126,11 @@ void GameWindow::addNumZombies(int num){
         zombieContainer[i]->setX(XYrand_x);
         zombieContainer[i]->setY(XYrand_y);
 
-      //  std::cout <<"x: " << rand_x << " y: " << rand_y << std::endl; //DEBUG
+        //  std::cout <<"x: " << rand_x << " y: " << rand_y << std::endl; //DEBUG
         zombieContainer[i]->setScale(0.2);
 
         zombieContainer[i]->setPathToGene(rand_x,rand_y, 15, 12);   //Gene is located at (r,c)=(15,12)
         scene->addItem(zombieContainer[i]);
-
-
     }
 }
 

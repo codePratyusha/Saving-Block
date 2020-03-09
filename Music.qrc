@@ -1,5 +1,8 @@
 <RCC>
-    <qresource prefix="/new/music">
+    <qresource prefix="/music">
         <file>Crash Bandicoot Theme.mp3</file>
+        <file>Crash Twinsanity - Theme Song.mp3</file>
+        <file>Sad Violin - MLG Sound Effects (HD).mp3</file>
+        <file>Minecraft Pick Item [Sound Effect].mp3</file>
     </qresource>
 </RCC>

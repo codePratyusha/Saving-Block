@@ -8,6 +8,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsRectItem>
 #include <QList>
+#include <QMediaPlayer>
 
 class Bullet: public QObject, public QGraphicsPixmapItem
 {
@@ -26,6 +27,7 @@ private:
     int distance_traveled;
     int range;
 
+    QMediaPlayer* shootMusic = nullptr;
 };
 
 #endif // BULLET_H

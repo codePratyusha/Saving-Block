@@ -35,6 +35,12 @@ LoseWindow::LoseWindow() {
     rain2->start();
     rain3->start();
 
+    //Setting lostWindow music
+    lostWindowMusic= new QMediaPlayer(this);
+    lostWindowMusic->setMedia(QUrl("qrc:/music/Sad Violin - MLG Sound Effects (HD).mp3"));
+    lostWindowMusic->play();
+    connect(lostWindowMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
+
     //Setting layout
     loseWindowGridLayout = new QGridLayout();
     loseWindowGridLayout->addWidget(loseTitle, 0,0, Qt::AlignCenter);

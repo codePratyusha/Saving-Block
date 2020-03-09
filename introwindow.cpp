@@ -38,6 +38,12 @@ introWindow::introWindow()
                               "background-color: rgba(255, 255, 255, 100);");
     hardButton->setFixedSize(100, 50);
 
+    //Setting theme music
+    introMusic= new QMediaPlayer(this);
+    introMusic->setMedia(QUrl("qrc:/music/Crash Twinsanity - Theme Song.mp3"));
+    introMusic->play();
+    connect(introMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
+
     //Setting background image
     QPalette palette;
     palette.setBrush(this->backgroundRole(), QBrush(QImage(":/images/Background.png")));
@@ -67,6 +73,8 @@ void introWindow::openGameWindow() {
     gameWindow->setWindowTitle("Save Gene Block");
 
     std::cout << "Game Window Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
+
+    introMusic->stop();
 
     gameWindow->show();
     this->close();

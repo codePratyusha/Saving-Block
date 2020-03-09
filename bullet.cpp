@@ -20,6 +20,12 @@ Bullet::Bullet():QObject(), QGraphicsPixmapItem()
 
 void Bullet::move()
 {
+    //Creating music and mute button
+    shootMusic= new QMediaPlayer(this);
+    shootMusic->setMedia(QUrl("qrc:/music/Minecraft Pick Item [Sound Effect].mp3"));
+    shootMusic->play();
+    connect(shootMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
+
     //if bullet hits zombies, delete both
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
@@ -52,41 +58,38 @@ void Bullet::move()
         }
     }
 
-
     int STEP_SIZE = 45;
 
-        // find the dx and dy
-        int dx = STEP_SIZE * qCos(qDegreesToRadians(rotation()));
-        int dy = STEP_SIZE * qSin(qDegreesToRadians(rotation()));
+    // find the dx and dy
+    int dx = STEP_SIZE * qCos(qDegreesToRadians(rotation()));
+    int dy = STEP_SIZE * qSin(qDegreesToRadians(rotation()));
 
-        setX(x()+dx);
-        setY(y()+dy);
+    setX(x()+dx);
+    setY(y()+dy);
 
-        distance_traveled += STEP_SIZE;
+    distance_traveled += STEP_SIZE;
 
-        // delete the arrow if its past its range
-        if (distance_traveled > range){
-            scene()->removeItem(this);
-            delete this;
-            return;
-        }
+    // delete the arrow if its past its range
+    if (distance_traveled > range){
+        scene()->removeItem(this);
+        delete this;
+        return;
+    }
 
-        // delete the arrow if its out of bounds
-        double pos_x = scenePos().x();
-        double pos_y = scenePos().y();
-        double scene_width = this->scene()->sceneRect().width();
-        double scene_height = scene()->sceneRect().height();
-        if (pos_x > scene_width || pos_x < 0 || pos_y > scene_height || pos_y < 0){
-            scene()->removeItem(this);
-            delete this;
-            return;
-        }
-
-
+    // delete the arrow if its out of bounds
+    double pos_x = scenePos().x();
+    double pos_y = scenePos().y();
+    double scene_width = this->scene()->sceneRect().width();
+    double scene_height = scene()->sceneRect().height();
+    if (pos_x > scene_width || pos_x < 0 || pos_y > scene_height || pos_y < 0){
+        scene()->removeItem(this);
+        delete this;
+        return;
+    }
 }
 
-int Bullet::getDamage(){
-return damage;
+int Bullet::getDamage() {
+    return damage;
 }
 
 void Bullet::setDamage(int val){
