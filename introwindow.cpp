@@ -83,7 +83,7 @@ void introWindow::openGameWindow() {
 //Instructions window
 void introWindow::openInstrWindow() {
     instructionsWindow = new InstructionsWindow();
-    instructionsWindow->setFixedSize(500, 400);
+    instructionsWindow->setFixedSize(440, 295);
     instructionsWindow->setWindowTitle("How to Play");
     instructionsWindow->show();
 }
@@ -92,7 +92,7 @@ void introWindow::selectEasy() {
     isEasySelected = true;
     if ((isEasySelected == true) && (isHardSelected == false)) {
         easyButton->setStyleSheet("font: bold 15pt;"
-                                  "border-color: white;"
+                                  "bo rder-color: white;"
                                   "background-color: rgba(0, 215, 115, 90);");      //green background color
     } else if ((isHardSelected == true) && (isEasySelected == true)) {
         isHardSelected = false;

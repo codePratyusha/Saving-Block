@@ -21,12 +21,12 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     //Creating Gene Block object
     QPixmap geneBlockIcon(":/images/daddy_block.png");
     geneBlock = new GeneBlock(isEasy, geneBlockIcon);
-    geneBlock->setPos((width() / 2) - 35, (height() / 2));  //setting position in middle of board
+    geneBlock->setPos(300,240);//((width() / 2) - 35, (height() / 2));  //setting position in middle of board
     scene->addItem(geneBlock);
 
     //Creating zombie object
     QPixmap zombieIcon(":/images/zombieRight.png");
-    addNumZombies(3);
+    addNumZombies(6);
 
     //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
     //    For each level, set an initial number of zombies available and visible
@@ -43,6 +43,8 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     //scene->addWidget(muteSoundButton);
     button_layout->addWidget(muteSoundButton, 0,2,1,1, Qt::AlignTop);
     setLayout(button_layout);
+
+    connect(muteSoundButton, SIGNAL(clicked()),this, SLOT(muteSound()));
 
     //muteSoundButton->setLayout(button_layout);
     // muteSoundButton->set
@@ -135,5 +137,7 @@ void GameWindow::addNumZombies(int num){
 }
 
 
-
+void GameWindow::muteSound(){
+    titleMusic->stop();
+}
 

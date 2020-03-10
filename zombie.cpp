@@ -8,7 +8,7 @@
 #include <vector>
 
 
-extern GameWindow* game;
+
 
 
 //Constructor
@@ -35,6 +35,9 @@ Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
     }
 
 
+
+
+
     //QTimer* timer = new QTimer(this);
     timer->singleShot(1000,this,SLOT(moveToGene()));
 
@@ -51,9 +54,9 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
 
     int R=26;
     int C= 31;
-
-    int visited[26][31];
-    char m[26][31];
+\
+    int visited[R][C];
+    //char m[26][31];
 
     for(int i=0; i<26; i++){
         for(int j=0; j< 31; j++){
@@ -187,6 +190,7 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
     //Store parents of target pair
 
 
+    //initialize keys for target
     int key_row=row_targ;
     int key_col=col_targ;
 
@@ -201,6 +205,7 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
         key_col = p.second;
     }
 
+    //store source node in vector
     this->mypath.push_back({row_src, col_src});
 
     //reverse vector to get path right way round
@@ -212,13 +217,6 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
 
 
     //iterate through reversed vector and each time the timer is called set the position of the zombie to position
-
-
-
-
-
-
-
     //this->findPathFromMap(std::map<std::pair<int,int>,std::pair<int,int>);
     return;
 }
@@ -229,11 +227,20 @@ void Zombie::moveToGene(){
     //update zombie position on XY PLane
     //send back a single shot timer
 
+    //set XY coordinates for the zombies
+
+
     double X = (mypath[this->k].first*20);
     double Y = (mypath[this->k].second*20);
-    this->k = this->k+1;
 
+    //set center of zombie to the center of its pixmap
+     //this->setTransformOriginPoint(125,187);
     this->setPos(X, Y);
+
+    if(this->k < this->mypath.size()){
+        this->k = this->k+1;
+    }
+
 //    std::cout << "row: " << X << "col: " << Y << std::endl;
 
     if(this->k < this->mypath.size()){

@@ -25,6 +25,9 @@ public:
     void keyPressEvent(QKeyEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void addNumZombies(int num);
+
+public slots:
+    void muteSound();
 private:
     QPushButton *muteSoundButton;
     QGraphicsScene* scene = nullptr;
