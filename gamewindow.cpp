@@ -12,21 +12,21 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     scene = new QGraphicsScene(this);
 
     //Creating Player object
-    QPixmap userIcon(":/images/sad_bruin.png");    //create image for Player object
-    user = new Player(userIcon);                                    //initialize Player object to image
-    user->setPos(150, 150);                                         //set position
+    QPixmap userIcon(":/images/sad_bruin.png");     //create image for Player object
+    user = new Player(userIcon);                    //initialize Player object to image
+    user->setPos(285, 50);                         //set position
     user->setScale(1.1);
-    scene->addItem(user);                                           //add player to scene
+    scene->addItem(user);                           //add player to scene
 
     //Creating Gene Block object
     QPixmap geneBlockIcon(":/images/daddy_block.png");
     geneBlock = new GeneBlock(isEasy, geneBlockIcon);
-    geneBlock->setPos(300,240);//((width() / 2) - 35, (height() / 2));  //setting position in middle of board
+    geneBlock->setScale(0.35);
+    geneBlock->setPos(285,220);
     scene->addItem(geneBlock);
 
-    //Creating zombie object
-    QPixmap zombieIcon(":/images/zombieRight.png");
-    addNumZombies(6);
+    //Adding zombies to scene
+    addNumZombies(1);
 
     //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
     //    For each level, set an initial number of zombies available and visible
@@ -107,7 +107,7 @@ void GameWindow::mouseMoveEvent(QMouseEvent *event){
 //Adds given number of zombies to the GameWindow
 void GameWindow::addNumZombies(int num){
 
-    QPixmap zombieIcon(":/images/zombieRight.png");
+    QPixmap zombieIcon(":/images/Calpirg_Zombie.png");
 
     for(int i=0; i<num; i++){
         zombie = new Zombie(zombieIcon);
@@ -129,13 +129,12 @@ void GameWindow::addNumZombies(int num){
         zombieContainer[i]->setY(XYrand_y);
 
         //  std::cout <<"x: " << rand_x << " y: " << rand_y << std::endl; //DEBUG
-        zombieContainer[i]->setScale(0.2);
+        zombieContainer[i]->setScale(0.3);
 
         zombieContainer[i]->setPathToGene(rand_x,rand_y, 15, 12);   //Gene is located at (r,c)=(15,12)
         scene->addItem(zombieContainer[i]);
     }
 }
-
 
 void GameWindow::muteSound(){
     titleMusic->stop();

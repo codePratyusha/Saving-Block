@@ -1,4 +1,3 @@
-
 #include "zombie.h"
 #include <iostream>
 #include <QTimer>
@@ -6,10 +5,6 @@
 #include <queue>
 #include <map>
 #include <vector>
-
-
-
-
 
 //Constructor
 //@def constructs a zombie object and initializes the position to 0,0
@@ -34,18 +29,15 @@ Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
         }
     }
 
-
-
-
-
     //QTimer* timer = new QTimer(this);
     timer->singleShot(1000,this,SLOT(moveToGene()));
-
 }
 
 
 //Destructor
-Zombie::~Zombie(){}
+Zombie::~Zombie() {
+
+}
 
 void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ){
 
@@ -248,16 +240,20 @@ void Zombie::moveToGene(){
     }
 }
 
-double Zombie::zombieMapToXY(double coord){return coord*20;}
+double Zombie::zombieMapToXY(double coord) {
+    return coord*20;
+}
 
 int Zombie::getHealth()
 {
     return health;
 }
+
 char Zombie::getDir()
 {
     return direction;
 }
+
 bool Zombie::getStatus()
 {
     return isDead;
