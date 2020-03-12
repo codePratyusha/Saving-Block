@@ -4,8 +4,6 @@
 #include <iostream> //FOR DEBUG ONLY
 #include <stdlib.h>
 
-extern int gameLevel;
-
 GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
 {
     //Creating scene
@@ -26,7 +24,7 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     scene->addItem(geneBlock);
 
     //Adding zombies to scene
-    addNumZombies(1);
+    addNumZombies(5);
 
     //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
     //    For each level, set an initial number of zombies available and visible
@@ -45,12 +43,6 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     setLayout(button_layout);
 
     connect(muteSoundButton, SIGNAL(clicked()),this, SLOT(muteSound()));
-
-    //muteSoundButton->setLayout(button_layout);
-    // muteSoundButton->set
-    //scene->addWidget(muteSoundButton)
-    //muteSoundButton->setLayout()
-    //scene->addWidget(muteSoundButton); //addWidget(muteSoundButton, 1, 1);
 
     //Customizing scene
     scene->setSceneRect(0, 0, width(), height());               //set scene background
@@ -74,11 +66,14 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
 }
 
 GameWindow::~GameWindow() {
+    delete muteSoundButton;
     delete scene;
     delete gameBackground;
+    delete geneBlock;
     delete user;
     delete health;
     delete titleMusic;
+    delete zombie;
 }
 
 //Move player using WASD keys
@@ -102,22 +97,19 @@ void GameWindow::mouseMoveEvent(QMouseEvent *event){
     user->setAngle(angle); // player's angle property is used to determine rotation of spawned arrows
 }
 
-
-
 //Adds given number of zombies to the GameWindow
 void GameWindow::addNumZombies(int num){
-
+    //Create zombie object
     QPixmap zombieIcon(":/images/Calpirg_Zombie.png");
 
-    for(int i=0; i<num; i++){
+    //Push zombies onto vector
+    for(int i = 0; i < num; ++i){
         zombie = new Zombie(zombieIcon);
         GameWindow::zombieContainer.push_back(zombie);
     }
     //set zombie represenations of the zombies in the container
     for (size_t i=0; i < zombieContainer.size(); i++){
         //get random position for the zombie
-
-
         double rand_x = (rand() % 30 + 0);   //zombieMap x indices range from 0-30
         double rand_y = (rand() % 25 + 0);    //zombieMap y indices range from 0-25
 
@@ -136,6 +128,7 @@ void GameWindow::addNumZombies(int num){
     }
 }
 
+//Mute audio of Game Window
 void GameWindow::muteSound(){
     titleMusic->stop();
 }

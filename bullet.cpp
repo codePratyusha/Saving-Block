@@ -20,12 +20,6 @@ Bullet::Bullet():QObject(), QGraphicsPixmapItem()
 
 void Bullet::move()
 {
-    //Creating music and mute button
-    shootMusic= new QMediaPlayer(this);
-    shootMusic->setMedia(QUrl("qrc:/music/Minecraft Pick Item [Sound Effect].mp3"));
-    shootMusic->play();
-    connect(shootMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
-
     //if bullet hits zombies, delete both
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i)

@@ -8,6 +8,7 @@
 #include <QKeyEvent>
 #include <QSet>
 #include <QPointF>
+#include <QmediaPlayer>
 
 
 class Player : public QObject, public QGraphicsPixmapItem
@@ -32,6 +33,8 @@ class Player : public QObject, public QGraphicsPixmapItem
         int xPrevious;
         int yPrevious;
         double angle;
+
+        QMediaPlayer* shootMusic = nullptr;
 };
 
 #endif // PLAYER_H

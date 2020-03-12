@@ -9,7 +9,7 @@ Player::Player(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
 
 //Destructor
 Player::~Player() {
-    //delete dynamically allocated data members
+    delete shootMusic;
 }
 
 //Moves player with WASD keys
@@ -77,6 +77,12 @@ void Player::keyPressEvent(QKeyEvent* event) {
 
         else if (event->key() == Qt::Key_Space)
         {
+//            //Creating music and mute button
+//            shootMusic= new QMediaPlayer(this);
+//            shootMusic->setMedia(QUrl("qrc:/music/Minecraft Pick Item [Sound Effect].mp3"));
+//            shootMusic->play();
+//            connect(shootMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
+
             Bullet * bullet = new Bullet();
             // bullet->setPos(x(),y());
             bullet->setPos(mapToScene(50,-5));

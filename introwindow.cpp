@@ -135,12 +135,15 @@ void introWindow::selectHard() {
 //Deletes all objects
 introWindow::~introWindow()
 {
+    delete instructionsWindow;
     delete IntroWindowGridLayout;
     delete gameTitle;
     delete startWindowButton;
     delete instructionsButton;
+    delete goBackButton;
     delete easyButton;
     delete hardButton;
+    delete introMusic;
 }
 
 bool introWindow::getDifficulty() {

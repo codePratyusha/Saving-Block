@@ -36,7 +36,7 @@ Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
 
 //Destructor
 Zombie::~Zombie() {
-
+    delete timer;
 }
 
 void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ){

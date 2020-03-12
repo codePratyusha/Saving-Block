@@ -26,8 +26,6 @@ private:
     int damage;
     int distance_traveled;
     int range;
-
-    QMediaPlayer* shootMusic = nullptr;
 };
 
 #endif // BULLET_H
