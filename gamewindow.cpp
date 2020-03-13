@@ -5,7 +5,6 @@
 #include <stdlib.h>
 
 int zombieContainerSize = 5;    //hard-coding zombie container size as 5
-int health = 5;
 
 GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
 {
