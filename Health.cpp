@@ -1,6 +1,8 @@
 #include "Health.h"
 #include <QFont>
 
+//int health = 5;
+
 Health::Health(bool isEasyDifficulty) {
     if (isEasyDifficulty == true) {    //if easy difficulty
         health = 5;

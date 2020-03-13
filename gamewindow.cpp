@@ -115,7 +115,7 @@ void GameWindow::openWinWindow() {
 
 //Check size of zombie container
 void GameWindow::checkContainerSize() {
-    std::cout << "running" << std::endl;
+    std::cout << "ran" << std::endl;
     if (zombieContainerSize <= 0) {
         isWinWindowOpen = true;
         openWinWindow();

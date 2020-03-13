@@ -12,8 +12,8 @@ Bullet::Bullet():QObject(), QGraphicsPixmapItem()
     setPixmap(QPixmap(":/images/yerbe_mate.png").scaled(50, 50, Qt::KeepAspectRatio));
 
     distance_traveled = 0;
-    range = 650;
-    damage = 50;
+    range = 140;                //sets range of how far bullet ravels
+    damage = 50;                //sets damage
 
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));

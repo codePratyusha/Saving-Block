@@ -3,6 +3,8 @@
 
 #include <QGraphicsTextItem>
 
+//extern int health;
+
 class Health: public QGraphicsTextItem {
     public:
         Health(bool isEasyDifficulty);

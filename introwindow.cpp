@@ -42,7 +42,6 @@ introWindow::introWindow()
     introMusic= new QMediaPlayer(this);
     introMusic->setMedia(QUrl("qrc:/music/Crash Twinsanity - Theme Song.mp3"));
     introMusic->play();
-    connect(introMusic, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(replayMusic(QMediaPlayer::State)));
 
     //Setting background image
     QPalette palette;

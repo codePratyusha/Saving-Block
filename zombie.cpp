@@ -9,11 +9,6 @@
 //Constructor
 //@def constructs a zombie object and initializes the position to 0,0
 Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
-    //create Zombie and set size
-
-    // QPixmap zombiePix(":/images/zombieRight.png");
-    // setPixmap(zombiePix);
-    //zombiePix.scaled(0,0);
     x_pos = pos().x();
     y_pos = pos().y();
     health = 100;
@@ -232,11 +227,11 @@ void Zombie::moveToGene() {
         this->timer->singleShot(500,this,SLOT(moveToGene()));
     }
 
-    //285, 220
-    if ((x() == 285) && (y() == 220)) { //if zombies move to Gene Block's position
-        //implmenet code leading to loseWindow0
-        std::cout << "zombieContainerSize: " << zombieContainerSize << std::endl;
-    }
+//    //285, 220
+//    if ((X == 300) && (Y == 240)) { //if zombies move to Gene Block's position
+//        health--;
+//        std::cout << "Health: " << health << std::endl;
+//    }
 }
 
 double Zombie::zombieMapToXY(double coord) {
