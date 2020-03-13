@@ -30,7 +30,7 @@ Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
     }
 
     //QTimer* timer = new QTimer(this);
-    timer->singleShot(1000,this,SLOT(moveToGene()));
+    timer->singleShot(1000, this, SLOT(moveToGene()));
 }
 
 
@@ -44,8 +44,8 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
     //    int row_src = 10;  //replace hardcoded values with params
     //    int col_src = 23;
 
-    int R=26;
-    int C= 31;
+    int R = 26;
+    int C = 31;
 \
     int visited[R][C];
     //char m[26][31];
@@ -56,13 +56,7 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
         }
     }
 
-    //    for(int i=0; i<26; i++){
-    //        for(int j=0; j< 31; j++){
-    //            m[i][j]='.';
-    //        }
-    //    }
-
-    this->zombieMap[row_targ][col_targ]= 'E';
+    this->zombieMap[row_targ][col_targ] = 'E';
 
     //Declare a map that has Nodes for their key values and parents for their mapped values
     std::map<std::pair<int,int>, std::pair<int,int>> mymap;
@@ -74,7 +68,6 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
         Node* parent;
         Node(int x, int y, Node* p) : row(x), col(y) , parent(p){}
         //Node(),
-
     };
 
     Node source(row_src, col_src, nullptr);
@@ -214,7 +207,7 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
 }
 
 
-void Zombie::moveToGene(){
+void Zombie::moveToGene() {
     //transform coords into XY plane
     //update zombie position on XY PLane
     //send back a single shot timer
@@ -238,29 +231,31 @@ void Zombie::moveToGene(){
     if(this->k < this->mypath.size()){
         this->timer->singleShot(500,this,SLOT(moveToGene()));
     }
+
+    //285, 220
+    if ((x() == 285) && (y() == 220)) { //if zombies move to Gene Block's position
+        //implmenet code leading to loseWindow0
+        std::cout << "zombieContainerSize: " << zombieContainerSize << std::endl;
+    }
 }
 
 double Zombie::zombieMapToXY(double coord) {
     return coord*20;
 }
 
-int Zombie::getHealth()
-{
+int Zombie::getHealth() {
     return health;
 }
 
-char Zombie::getDir()
-{
+char Zombie::getDir() {
     return direction;
 }
 
-bool Zombie::getStatus()
-{
+bool Zombie::getStatus() {
     return isDead;
 }
 
-void Zombie::setHealth(int h)
-{
+void Zombie::setHealth(int h) {
     health = h;
 }
 void Zombie::setDir(char d)
@@ -268,16 +263,6 @@ void Zombie::setDir(char d)
     direction = d;
 }
 
-void Zombie::decreaseHealth(int amount)
-{
+void Zombie::decreaseHealth(int amount) {
     health = health-amount;
 }
-
-//void Zombie::Gene()
-//{
-
-//}
-//void Zombie::hurtGene()
-//{
-
-//}

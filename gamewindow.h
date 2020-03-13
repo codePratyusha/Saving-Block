@@ -15,6 +15,10 @@
 #include <zombie.h>
 #include <geneblock.h>
 #include <QObject>
+#include <winwindow.h>
+#include <QTimer>
+
+extern int zombieContainerSize;
 
 class GameWindow : public QGraphicsView
 {
@@ -28,6 +32,7 @@ class GameWindow : public QGraphicsView
 
     public slots:
         void muteSound();
+        void openWinWindow();
 
     private:
         QPushButton *muteSoundButton;
@@ -39,6 +44,10 @@ class GameWindow : public QGraphicsView
         QMediaPlayer* titleMusic = nullptr;
         Zombie* zombie = nullptr;
         std::vector<Zombie*> zombieContainer; //vector of ptrs to zombies
+
+        WinWindow* winWindow = nullptr;
+        bool isWinWindowOpen;
+        void checkContainerSize();
 };
 
 #endif // GAMEWINDOW_H

@@ -5,6 +5,8 @@
 #include <qmath.h>
 #include <QGraphicsScene>
 
+#include <gamewindow.h>
+
 Bullet::Bullet():QObject(), QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/yerbe_mate.png").scaled(50, 50, Qt::KeepAspectRatio));
@@ -39,6 +41,10 @@ void Bullet::move()
                 //delete attacked_object;
                 //delete attacked_object;   //ADDED
                 //attacked_object = nullptr;
+
+                zombieContainerSize--;
+                std::cout << "zombieContainerSize: " << zombieContainerSize << std::endl;
+
                 delete this;
                 return;
             }
