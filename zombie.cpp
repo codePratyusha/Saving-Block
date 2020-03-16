@@ -217,9 +217,14 @@ void Zombie::moveToGene(){
         //set center of zombie to the center of its pixmap
      //this->setTransformOriginPoint(125,187);
      this->setPos(X, Y);
+     this->k = this->k+1;
 
-        this->k = this->k+1;
+    if(X==300 && Y==240){
+        isGeneHit= true;
     }
+
+    }
+
 
 //    std::cout << "row: " << X << "col: " << Y << std::endl;
 
@@ -228,9 +233,8 @@ void Zombie::moveToGene(){
     }
 
     //zombies have movedto gene block's position
-  if(this->pos().x()==300 && this->pos().y()==240){
-    isGeneHit = true;
-}
+
+
 }
 
 

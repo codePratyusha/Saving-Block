@@ -47,7 +47,7 @@ void Bullet::move()
 
                 zombieContainerSize--;
                 std::cout << "zombieContainerSize: " << zombieContainerSize << std::endl;
-                isGeneHit = true;
+
 
                 delete this;
 
