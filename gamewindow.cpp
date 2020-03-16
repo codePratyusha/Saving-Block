@@ -17,7 +17,7 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
 
     //Creating Player object
     QPixmap userIcon(":/images/sad_bruin.png");     //create image for Player object
-    user = new Player(userIcon);                    //initialize Player object to image
+    user = new Player(isEasy, userIcon);                    //initialize Player object to image
     user->setPos(280, 40);                         //choose arbitrary position for player
     user->setScale(1.1);
     scene->addItem(user);                           //add player to scene

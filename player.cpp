@@ -2,9 +2,10 @@
 #include "bullet.h"
 
 //Constructor
-Player::Player(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
+Player::Player(bool isE, QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
     xPrevious = pos().x();
     yPrevious = pos().y();
+    isEasy = isE;
 }
 
 //Destructor
@@ -70,6 +71,10 @@ void Player::keyPressEvent(QKeyEvent* event) {
             // bullet->setPos(x(),y());
             bullet->setPos(mapToScene(50,-5));
             bullet->setRotation(rotation());
+            if (isEasy == false)
+            {
+                bullet->setDamage(25);
+            }
             //bullet->setRotation(-40);
             scene()->addItem(bullet);
         }

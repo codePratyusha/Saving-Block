@@ -14,7 +14,7 @@
 class Player : public QObject, public QGraphicsPixmapItem
 {
     public:
-        Player(QPixmap& pixmap);
+        Player(bool isE, QPixmap& pixmap);
         ~Player();
 
         int updateHealth();
@@ -33,6 +33,7 @@ class Player : public QObject, public QGraphicsPixmapItem
         int xPrevious;
         int yPrevious;
         double angle;
+        bool isEasy;
 
         QMediaPlayer* shootMusic = nullptr;
 };
