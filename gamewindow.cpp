@@ -5,10 +5,12 @@
 #include <stdlib.h>
 
 int zombieContainerSize = 5;    //hard-coding zombie container size as 5
+bool isGeneHit = false;   //setting gene status
 
 GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
 {
     isWinWindowOpen = false;
+    //isLoseWindowOpen = false;
 
     //Creating scene
     scene = new QGraphicsScene(this);
@@ -16,7 +18,7 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     //Creating Player object
     QPixmap userIcon(":/images/sad_bruin.png");     //create image for Player object
     user = new Player(userIcon);                    //initialize Player object to image
-    user->setPos(285, 50);                         //set position
+    user->setPos(280, 40);                         //choose arbitrary position for player
     user->setScale(1.1);
     scene->addItem(user);                           //add player to scene
 
@@ -24,7 +26,7 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     QPixmap geneBlockIcon(":/images/daddy_block.png");
     geneBlock = new GeneBlock(isEasy, geneBlockIcon);
     geneBlock->setScale(0.35);
-    geneBlock->setPos(285,220);
+    geneBlock->setPos(300,240);
     scene->addItem(geneBlock);
 
     //Adding zombies to scene
@@ -32,6 +34,15 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
 
     //std::cout<< "zombiecontainersize1: " << zombieContainer.size()<< std::endl;  //DEBUG
     //    For each level, set an initial number of zombies available and visible
+
+    //Creating mainTimer that keeps track of when gene is hit
+
+    //QTimer *main_timer = new QTimer(this);
+    main_timer->singleShot(1000, this, SLOT(checkGeneStatus()));
+    //connect(main_timer, SIGNAL(timeout()), this, SLOT(checkGeneStatus()));
+    //main_timer->start(1000);
+
+
 
     //Creating music and mute button
     titleMusic= new QMediaPlayer(this);
@@ -42,7 +53,7 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     muteSoundButton->setFixedSize(60,60);
 
     QGridLayout *button_layout = new QGridLayout;
-    button_layout->addWidget(muteSoundButton, 0,2,1,1, Qt::AlignTop);
+    button_layout->addWidget(muteSoundButton, 0,0, Qt::AlignTop);
     setLayout(button_layout);
     connect(muteSoundButton, SIGNAL(clicked()),this, SLOT(muteSound()));
 
@@ -52,9 +63,9 @@ GameWindow::GameWindow(bool isEasy, QWidget* parent) : QGraphicsView(parent)
     QBrush bg_brush(*gameBackground);
 
     //Adding health bar to scene
-    health = geneBlock->returnGeneBlockHealth();
-    health->setPos(0, -70); //setting position at top left
-    scene->addItem(health);
+    //health = geneBlock->returnGeneBlockHealth();
+    //health->setPos(0, -70); //setting position at top left
+    //scene->addItem(health);
 
     scene->setBackgroundBrush(bg_brush);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -76,6 +87,11 @@ GameWindow::~GameWindow() {
     delete health;
     delete titleMusic;
     delete zombie;
+
+    for(size_t i=0; i< zombieContainer.size(); i++){
+        delete zombieContainer[i];
+    }
+
 }
 
 //Move player using WASD keys
@@ -113,6 +129,16 @@ void GameWindow::openWinWindow() {
     winWindow->show();
 }
 
+//Opens Lose Window if Gene has been hit
+//void GameWindow::openLoseWindow(){
+//    loseWindow = new LoseWindow();
+//    loseWindow->setFixedSize(720, 480);
+//    loseWindow->setWindowTitle("Oh no!");
+//    this->close();
+//    titleMusic->stop();
+//    loseWindow->show();
+//}
+
 //Check size of zombie container
 void GameWindow::checkContainerSize() {
     std::cout << "ran" << std::endl;
@@ -120,6 +146,24 @@ void GameWindow::checkContainerSize() {
         isWinWindowOpen = true;
         openWinWindow();
     }
+}
+
+//Checks status of gene
+void GameWindow::checkGeneStatus(){
+    std::cout << "ran2" << std::endl;
+    if (isGeneHit==true) {
+       losewindow = new LoseWindow();
+       losewindow->setFixedSize(720, 480);
+       losewindow->setWindowTitle("Oh no!");
+        this->close();
+        titleMusic->stop();
+        losewindow->show();
+    }
+
+    else{
+        this->main_timer->singleShot(1000,this,SLOT(checkGeneStatus()));
+    }
+
 }
 
 //Adds given number of zombies to the GameWindow
@@ -134,9 +178,14 @@ void GameWindow::addNumZombies(int num){
     }
     //set zombie represenations of the zombies in the container
     for (size_t i=0; i < zombieContainer.size(); i++){
-        //get random position for the zombie
-        double rand_x = (rand() % 30 + 0);   //zombieMap x indices range from 0-30
-        double rand_y = (rand() % 25 + 0);    //zombieMap y indices range from 0-25
+
+
+       //initialize x and y pos
+        double rand_x=1;
+        double rand_y=1;
+
+        rand_x=(rand() % 30 + 0);   //zombieMap x indices range from 0-30
+        rand_y= (rand() % 25 + 0);    //zombieMap y indices range from 0-25
 
         double XYrand_x = zombieContainer[i]->zombieMapToXY(rand_x); //returns coords in XY-plane for zombie
         double XYrand_y = zombieContainer[i]->zombieMapToXY(rand_y);
@@ -146,7 +195,7 @@ void GameWindow::addNumZombies(int num){
         zombieContainer[i]->setY(XYrand_y);
 
         //  std::cout <<"x: " << rand_x << " y: " << rand_y << std::endl; //DEBUG
-        zombieContainer[i]->setScale(0.3);
+        zombieContainer[i]->setScale(0.35);
 
         zombieContainer[i]->setPathToGene(rand_x,rand_y, 15, 12);   //Gene is located at (r,c)=(15,12)
         scene->addItem(zombieContainer[i]);

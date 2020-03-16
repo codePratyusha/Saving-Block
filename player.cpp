@@ -18,7 +18,11 @@ void Player::keyPressEvent(QKeyEvent* event) {
             event->key() == Qt::Key_W ||
             event->key() == Qt::Key_A ||
             event->key() == Qt::Key_S ||
-            event->key() == Qt::Key_D
+            event->key() == Qt::Key_D ||
+            event-> key() == Qt::Key_O||
+            event-> key() == Qt::Key_I||
+            event-> key() == Qt::Key_L||
+            event-> key() == Qt::Key_J
         )
     {
         keysPressed.insert(event->key());
@@ -53,27 +57,6 @@ void Player::keyPressEvent(QKeyEvent* event) {
             break;
         }
     }
-
-    //if two keys are being pressed at same time, move player diagonally
-        if (keysPressed.size() > 1){
-
-            // up right
-            if (keysPressed.contains(Qt::Key_O)){
-                setPos(x()+STEP_SIZE,y()-STEP_SIZE);
-            }
-            // up left
-            if (keysPressed.contains(Qt::Key_I)){
-                setPos(x()-STEP_SIZE,y()-STEP_SIZE);
-            }
-            // down right
-            if (keysPressed.contains(Qt::Key_L)){
-                setPos(x()+STEP_SIZE,y()+STEP_SIZE);
-            }
-            // down left
-            if (keysPressed.contains(Qt::Key_J)){
-                setPos(x()-STEP_SIZE,y()+STEP_SIZE);
-            }
-        }
 
         else if (event->key() == Qt::Key_Space)
         {

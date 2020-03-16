@@ -10,6 +10,8 @@
 #include <QList>
 #include <QMediaPlayer>
 
+
+
 class Bullet: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

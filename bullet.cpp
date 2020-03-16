@@ -7,6 +7,9 @@
 
 #include <gamewindow.h>
 
+
+
+
 Bullet::Bullet():QObject(), QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/yerbe_mate.png").scaled(50, 50, Qt::KeepAspectRatio));
@@ -44,8 +47,12 @@ void Bullet::move()
 
                 zombieContainerSize--;
                 std::cout << "zombieContainerSize: " << zombieContainerSize << std::endl;
+                isGeneHit = true;
 
                 delete this;
+
+
+
                 return;
             }
             else

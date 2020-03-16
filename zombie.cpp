@@ -6,6 +6,8 @@
 #include <map>
 #include <vector>
 
+
+
 //Constructor
 //@def constructs a zombie object and initializes the position to 0,0
 Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
@@ -31,7 +33,7 @@ Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
 
 //Destructor
 Zombie::~Zombie() {
-    delete timer;
+    delete timer;  
 }
 
 void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ){
@@ -43,7 +45,6 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
     int C = 31;
 \
     int visited[R][C];
-    //char m[26][31];
 
     for(int i=0; i<26; i++){
         for(int j=0; j< 31; j++){
@@ -202,37 +203,37 @@ void Zombie::setPathToGene(int row_src, int col_src, int row_targ, int col_targ)
 }
 
 
-void Zombie::moveToGene() {
+void Zombie::moveToGene(){
     //transform coords into XY plane
     //update zombie position on XY PLane
     //send back a single shot timer
 
     //set XY coordinates for the zombies
 
-
+    if(this->mypath.size()!=0){
     double X = (mypath[this->k].first*20);
     double Y = (mypath[this->k].second*20);
 
-    //set center of zombie to the center of its pixmap
+        //set center of zombie to the center of its pixmap
      //this->setTransformOriginPoint(125,187);
-    this->setPos(X, Y);
+     this->setPos(X, Y);
 
-    if(this->k < this->mypath.size()){
         this->k = this->k+1;
     }
 
 //    std::cout << "row: " << X << "col: " << Y << std::endl;
 
     if(this->k < this->mypath.size()){
-        this->timer->singleShot(500,this,SLOT(moveToGene()));
+        this->timer->singleShot(800,this,SLOT(moveToGene()));
     }
 
-//    //285, 220
-//    if ((X == 300) && (Y == 240)) { //if zombies move to Gene Block's position
-//        health--;
-//        std::cout << "Health: " << health << std::endl;
-//    }
+    //zombies have movedto gene block's position
+  if(this->pos().x()==300 && this->pos().y()==240){
+    isGeneHit = true;
 }
+}
+
+
 
 double Zombie::zombieMapToXY(double coord) {
     return coord*20;

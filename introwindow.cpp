@@ -3,7 +3,6 @@
 #include <QBitmap>
 #include <QFont>
 
-
 introWindow::introWindow()
 {
     isEasy = true;              //sets default difficulty to easy
@@ -11,31 +10,31 @@ introWindow::introWindow()
     isHardSelected = false;
 
     gameTitle = new QLabel(QString("UCLA Meme Page Game: Saving Gene Block!"));
-    gameTitle->setStyleSheet("font: bold 25pt;"
-                             "QLabel{color: rgb(255, 255, 255);}");
+    gameTitle->setStyleSheet("font: bold 25pt;" "color: black");
+
 
     startWindowButton = new QPushButton("Start");
     startWindowButton->setStyleSheet("font: bold 15pt;"
                                      "border-color: white;"
-                                     "background-color: rgba(255, 255, 255, 85);");
+                                     "background-color: rgba(0, 0, 0, 85);");
     startWindowButton->setFixedSize(100, 50);
 
     instructionsButton = new QPushButton("How To Play");
     instructionsButton->setStyleSheet("font: bold 15pt;"
                                       "border-color: white;"
-                                      "background-color: rgba(255, 255, 255, 85);");
+                                      "background-color: rgba(0, 0, 0, 85);");
     instructionsButton->setFixedSize(140, 60);
 
     easyButton = new QPushButton("Easy");
     easyButton->setStyleSheet("font: bold 15pt;"
                               "border-color: white;"
-                              "background-color: rgba(255, 255, 255, 100);");
+                              "background-color: rgba(0, 0, 0, 85);");
     easyButton->setFixedSize(100, 50);
 
     hardButton = new QPushButton("Hard");
     hardButton->setStyleSheet("font: bold 15pt;"
-                              "border-color: white;"
-                              "background-color: rgba(255, 255, 255, 100);");
+                              "border-color: black;"
+                              "background-color: rgba(0, 0, 0, 85);");
     hardButton->setFixedSize(100, 50);
 
     //Setting theme music
@@ -71,8 +70,7 @@ void introWindow::openGameWindow() {
     gameWindow->setFixedSize(680, 680);
     gameWindow->setWindowTitle("Save Gene Block");
 
-    std::cout << "Game Window Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
-
+   // std::cout << "Game Window Difficulty: " << isEasy << std::endl; //for debugging purposes, prints difficulty to console
     introMusic->stop();
 
     gameWindow->show();
@@ -82,7 +80,7 @@ void introWindow::openGameWindow() {
 //Instructions window
 void introWindow::openInstrWindow() {
     instructionsWindow = new InstructionsWindow();
-    instructionsWindow->setFixedSize(440, 295);
+    instructionsWindow->setFixedSize(680, 680);
     instructionsWindow->setWindowTitle("How to Play");
     instructionsWindow->show();
 }
@@ -100,7 +98,8 @@ void introWindow::selectEasy() {
                                   "background-color: rgba(0, 215, 115, 90);");      //green background color
         hardButton->setStyleSheet("font: bold 15pt;"
                                   "border-color: white;"
-                                  "background-color: rgba(255, 255, 255, 100);");   //white background color
+                                  "background-color: rgba(0, 20, 0, 85);");   //white background color
+
     }
     isEasy = true;
 
@@ -122,7 +121,7 @@ void introWindow::selectHard() {
                                   "background-color: rgba(235, 75, 50, 90);");      //red background color
         easyButton->setStyleSheet("font: bold 15pt;"
                                   "border-color: white;"
-                                  "background-color: rgba(255, 255, 255, 100);");   //white background color
+                                  "background-color: rgba(0, 0, 0, 85);");   //white background color
     }
     isEasy = false;
 

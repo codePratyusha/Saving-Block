@@ -19,9 +19,9 @@ InstructionsWindow::InstructionsWindow()
         palette.setBrush(this->backgroundRole(), QBrush(QImage(":/images/ChalkBoard.jpeg")));
         this->setPalette(palette);
 
-    goBackButton = new QPushButton(tr("Back"));
-    goBackButton->setFixedSize(100, 50);
-    connect(goBackButton, SIGNAL(clicked()), this, SLOT(goToIntroWindow()));
+//    goBackButton = new QPushButton(tr("Back"));
+//    goBackButton->setFixedSize(100, 50);
+//    connect(goBackButton, SIGNAL(clicked()), this, SLOT(goToIntroWindow()));
 
     mainLayout->addWidget(instructionsText, 1, 0, Qt::AlignJustify);
     mainLayout->addWidget(goBackButton, 2, 0, Qt::AlignJustify);

@@ -16,9 +16,11 @@
 #include <geneblock.h>
 #include <QObject>
 #include <winwindow.h>
+#include <losewindow.h>
 #include <QTimer>
 
 extern int zombieContainerSize;
+extern bool isGeneHit;
 
 class GameWindow : public QGraphicsView
 {
@@ -33,9 +35,11 @@ class GameWindow : public QGraphicsView
     public slots:
         void muteSound();
         void openWinWindow();
+        void checkGeneStatus();
 
     private:
         QPushButton *muteSoundButton;
+        QTimer *main_timer;
         QGraphicsScene* scene = nullptr;
         QImage* gameBackground = nullptr;
         Player* user = nullptr;
@@ -48,6 +52,11 @@ class GameWindow : public QGraphicsView
         WinWindow* winWindow = nullptr;
         bool isWinWindowOpen;
         void checkContainerSize();
+
+
+        LoseWindow* losewindow = nullptr;
+
+
 };
 
 #endif // GAMEWINDOW_H
