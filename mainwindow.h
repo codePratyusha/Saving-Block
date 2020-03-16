@@ -17,7 +17,12 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    //Constructor for main window screen
+    //@param none
+
     ~MainWindow();
+    //Deallocates data members
+    //@param none
 private:
     Ui::MainWindow *ui;
 };

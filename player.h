@@ -8,34 +8,47 @@
 #include <QKeyEvent>
 #include <QSet>
 #include <QPointF>
-#include <QmediaPlayer>
+#include <QMediaPlayer>
 
 
 class Player : public QObject, public QGraphicsPixmapItem
 {
-    public:
-        Player(bool isE, QPixmap& pixmap);
-        ~Player();
+public:
+    Player(bool isE, QPixmap& pixmap);
+    //Constructor for player window screen
+    //@param 'isE' of type bool, represents difficulty setting
 
-        int updateHealth();
-        void keyPressEvent(QKeyEvent* event);
-        void keyReleaseEvent(QKeyEvent* event);
-    public slots:
-        void setAngle(double a);
-        double getAngle();
+    ~Player();
+    //Destructor, deallocates data members
+    //@param none
 
-        QPointF getOrigin();
-    private:
-        QSet<int> keysPressed;
-        const int easyMaxHealth = 5;    //constant health, player health can never exceed value
-        const int hardMaxHealth = 2;    //constant health, player health can never exceed value
-        const int STEP_SIZE = 20;       //how much player moves
-        int xPrevious;
-        int yPrevious;
-        double angle;
-        bool isEasy;
+    void keyPressEvent(QKeyEvent* event);
+    //Moves player using WASD, shoots Yerba if spacebar is pressed
+    //@param 'event' as type QKeyEvent*
 
-        QMediaPlayer* shootMusic = nullptr;
+    void keyReleaseEvent(QKeyEvent* event);
+    //Removes event from keysPressed QSet
+    //@param 'event' as type QKeyEvent*
+public slots:
+    void setAngle(double a);
+    //Sets angle of player object given parameter
+    //@param 'a' of type double, represents angle
+
+    double getAngle();
+    //Getter for angle
+    //@param none
+
+    QPointF getOrigin();
+    //Gets origin of player object
+    //@param none
+private:
+    QSet<int> keysPressed;
+    const int STEP_SIZE = 20;       //how much player moves
+    int xPrevious;
+    int yPrevious;
+    double angle;
+    bool isEasy;
+    QMediaPlayer* shootMusic = nullptr;
 };
 
 #endif // PLAYER_H

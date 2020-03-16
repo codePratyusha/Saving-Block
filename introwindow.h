@@ -9,37 +9,56 @@ class introWindow : public QWidget
 {
     Q_OBJECT
 
-    public:
-        introWindow();          //Constructor
-        ~introWindow();         //Destructor
-        bool getDifficulty();   //Get difficulty of game
-    public slots:
-        void openGameWindow();
-        void openInstrWindow();
-        void selectEasy();
-        void selectHard();
-    private:
-        InstructionsWindow* instructionsWindow = nullptr;
-        GameWindow* gameWindow = nullptr;
+public:
+    introWindow();
+    //Constructor, creates intro window to read instructions and play game
+    //@param none
 
-        //Layout
-        QGridLayout* IntroWindowGridLayout = nullptr;
+    ~introWindow();
+    //Destructor, deallocates data members
+    //@param none
 
-        //Label(s)
-        QLabel* gameTitle = nullptr;
+    bool getDifficulty();
+    //Getter for difficulty
+    //@param none
+public slots:
+    void openGameWindow();
+    //Opens game window when called
+    //@param none
 
-        //Buttons
-        QPushButton* startWindowButton = nullptr;
-        QPushButton* instructionsButton = nullptr;
-        QPushButton* goBackButton = nullptr;
-        QPushButton* easyButton = nullptr;
-        QPushButton* hardButton = nullptr;
+    void openInstrWindow();
+    //Opens instruction window when called
+    //@param none
 
-        bool isEasy;
-        bool isEasySelected;
-        bool isHardSelected;
+    void selectEasy();
+    //Sets difficulty to easy if called
+    //@param none
 
-        QMediaPlayer* introMusic = nullptr;
+    void selectHard();
+    //Sets difficulty to hard if called
+    //@param none
+private:
+    InstructionsWindow* instructionsWindow = nullptr;
+    GameWindow* gameWindow = nullptr;
+
+    //Layout
+    QGridLayout* IntroWindowGridLayout = nullptr;
+
+    //Label(s)
+    QLabel* gameTitle = nullptr;
+
+    //Buttons
+    QPushButton* startWindowButton = nullptr;
+    QPushButton* instructionsButton = nullptr;
+    QPushButton* goBackButton = nullptr;
+    QPushButton* easyButton = nullptr;
+    QPushButton* hardButton = nullptr;
+
+    bool isEasy;
+    bool isEasySelected;
+    bool isHardSelected;
+
+    QMediaPlayer* introMusic = nullptr;
 };
 
 #endif // INTROWINDOW_H
