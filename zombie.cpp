@@ -6,8 +6,6 @@
 #include <map>
 #include <vector>
 
-
-
 //Constructor
 //@def constructs a zombie object and initializes the position to 0,0
 Zombie::Zombie(QPixmap& pixmap) : QObject(), QGraphicsPixmapItem(pixmap) {
@@ -210,20 +208,20 @@ void Zombie::moveToGene(){
 
     //set XY coordinates for the zombies
 
+    if(pos().x()==300 && pos().y()==240){
+        std::cout<< "enters this" << std::endl;
+        isGeneHit=true;
+    }
+
     if(this->mypath.size()!=0){
     double X = (mypath[this->k].first*20);
     double Y = (mypath[this->k].second*20);
-
-        //set center of zombie to the center of its pixmap
-     //this->setTransformOriginPoint(125,187);
      this->setPos(X, Y);
      this->k = this->k+1;
 
-    if(X==300 && Y==240){
-        isGeneHit= true;
     }
 
-    }
+
 
 
 //    std::cout << "row: " << X << "col: " << Y << std::endl;

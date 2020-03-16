@@ -129,6 +129,16 @@ void GameWindow::openWinWindow() {
     winWindow->show();
 }
 
+//Opens Lose Window if Gene has been hit
+//void GameWindow::openLoseWindow(){
+//    loseWindow = new LoseWindow();
+//    loseWindow->setFixedSize(720, 480);
+//    loseWindow->setWindowTitle("Oh no!");
+//    this->close();
+//    titleMusic->stop();
+//    loseWindow->show();
+//}
+
 //Check size of zombie container
 void GameWindow::checkContainerSize() {
     std::cout << "ran" << std::endl;

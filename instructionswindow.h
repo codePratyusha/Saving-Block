@@ -6,18 +6,15 @@ class InstructionsWindow : public QWidget
 {
     Q_OBJECT
 
-public:
-    InstructionsWindow();
-    //Constructor, creates instructions window
-    //@param none
-
-    ~InstructionsWindow();
-    //Deallocates data members
-    //@param none
-private:
-    QLabel* instructionsText = nullptr;
-    QGridLayout* mainLayout = nullptr;
-    QPushButton* goBackButton = nullptr;
+    public:
+        InstructionsWindow();
+        ~InstructionsWindow();
+    public slots:
+        void goToIntroWindow();
+    private:
+        QLabel* instructionsText = nullptr;
+        QGridLayout* mainLayout = nullptr;
+        QPushButton* goBackButton = nullptr;
 };
 
 #endif // INSTRUCTIONSWINDOW_H
