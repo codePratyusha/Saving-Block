@@ -9,4 +9,4 @@ D=Right
 Space=Shoot
 
 
-The objective is to protect Gene Block, which can be done by shooting the zombies. If a zombie touches Gene Block, his health decreases, which is reflected in a number at the top left corner. 
+The objective is to protect Gene Block, which can be done by shooting the zombies. If a zombie collides with Gene Block, his health decreases and the game ends. 
