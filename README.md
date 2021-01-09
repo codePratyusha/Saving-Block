@@ -1,3 +1,6 @@
-# uclaGame
+# Saving Block
 
-#Save Gene Block by protecting him from the sleep-deprived students by shooting Yerba's!
+#Save Block from all the sleep-deprived students by shooting Yerba Mates at them!
+
+#Languages: C++ 
+#Framework: Qt 
